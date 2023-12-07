@@ -1,0 +1,1 @@
+<img src="{{ asset("profile_images/".Auth::user()->avatar) }}"  onerror="this.src='{{asset('dummy-img.png')}}'"  class="box-shadow-4" alt="avatar" />

@@ -1,0 +1,149 @@
+.pending{
+    background: tomato;
+    box-shadow: 0px 0px 20px tomato;
+    color: #fff;
+    padding: 4px 9px;
+    border-radius: 24px;
+    font-size: 14px;tical-align: middle;
+}
+
+.chat-box{
+    position: fixed;
+    bottom:0px;
+    right: 0px; 
+    /* /* margin-top:15px; */
+    margin-bottom: 25px; */
+    z-index: 100;
+}
+
+.active-tab{
+    background:lightgoldenrodyellow;
+}
+
+.share-right {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.share-left {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #fff
+}
+
+.chat-content {
+    min-width:200px;
+}
+
+.thumbnail {
+    cursor: pointer;
+}
+
+.lightbox {
+    position: absolute;
+    width: 1000px;
+    margin-left: -310px;
+    padding-bottom: 60px
+}
+
+.lightbox:hover{
+    /* animation-name: zoom;
+    transform: scale(1.5); */
+}
+
+.img-rounded {
+    border-radius: 8px;
+}
+
+.btn-modal-close {
+    color: #fff;
+    font-weight: bold;
+    font-size: 24px;
+    position: absolute;
+    top:-10px;
+    right:0;
+}
+
+.popup-close{
+    position: absolute;
+    right: -300px;
+    top:-50px;
+    background: transparent;
+    color: #fff;
+    font-size: 36px;
+    outline: none;
+    border: none;
+}
+
+/* Style the Image Used to Trigger the Modal */
+
+.light-modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 60px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (Image) */
+.light-modal-content {
+    margin: auto;
+    /* display: block; */
+    width: 80%;
+    max-width: 700px;
+}
+
+.overflow-visible {
+    overflow: visible !important;    
+}
+
+.header-time {
+    font-size: 16px;
+}
+
+@keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+}
+@media only screen and (max-width: 414px){
+    .lightbox{
+        width: 360px;
+        margin-left: -37px;
+    }
+
+    .light-modal {
+        padding-top:90px;
+    }
+
+    .popup-close {
+        right: -45px;
+        top: -50px;
+        font-size: 40px;
+    }
+}
+
+@media only screen and (min-width: 1920px){
+    .lightbox{
+        width: 1080px;
+        margin-left: -340px;
+    }
+
+    .light-modal {
+        padding-top:150px;
+    }
+
+    .popup-close {
+        right: -350px;
+        top:-60px;
+        font-size: 40px;
+    }
+}
+}
