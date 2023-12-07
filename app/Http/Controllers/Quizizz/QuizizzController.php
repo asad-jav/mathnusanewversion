@@ -118,7 +118,7 @@ class QuizizzController extends Controller
     }
 
     public function update(Request $request,$id)
-    {
+    { 
         $this->validate($request,[
             'title' => 'required',
             'grade' => 'required',
@@ -128,15 +128,15 @@ class QuizizzController extends Controller
             'end_date' => 'required',
             'passing_marks' => 'required'
         ]);
-        $quiz = Quizizz::where('id',$id)->first(); 
+        $quiz = Quizizz::where('id',$id)->first();  
         if($request->status == '1' || $request->status == '2')
         {
             if ($quiz->easy_level >= 9 && $quiz->average_level >= 9 && $quiz->difficult_level >= 9 && $quiz->very_difficult_level >= 9 && $quiz->total_questions >= 36)
-            {
+            { 
                 $quiz->status = $request->status;
             }
             else
-            {
+            { 
                 return back()->with(['status' => 'failure','message' => 'Quiz questions must be greater then 36 and each difficulty level must have 9 questions.']);
             }
         }

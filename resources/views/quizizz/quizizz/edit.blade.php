@@ -21,16 +21,7 @@
 
 <div class="app-content content pt-2 pb-2">
     <div class="col-12">
-        @if (Session::has('success'))
-        <div class="alert alert-success">
-            {{ Session::get('success') }}
-        </div>
-        @endif
-        @if (Session::has('failure'))
-        <div class="alert alert-danger">
-            {{ Session::get('failure') }}
-        </div>
-        @endif
+      
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">
@@ -39,6 +30,17 @@
             </div>
             <div class="card-content collapse show">
                 <div class="card-body">
+                @if (session('status') == 'success')
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+        @endif
+
+        @if (session('status') == 'failure')
+            <div class="alert alert-danger">
+                {{ session('message') }}
+            </div>
+        @endif
                     <form action="{{route('quizizz.update',$quiz->id)}}" method="Post" class="form-horizontal">
                         @csrf
                         @method("PUT")

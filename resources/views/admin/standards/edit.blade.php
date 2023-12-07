@@ -14,6 +14,16 @@
                 </div>
                 <div class="card-content collapse show">
                     <div class="card-body"> 
+                    @if (Session::has('success'))
+                        <div class="alert alert-success">
+                            {{Session::get('success')}}
+                        </div>
+                        @endif
+                        @if (Session::has('failure'))
+                        <div class="alert alert-danger">
+                            {{Session::get('failure')}}
+                        </div>
+                        @endif
                         <form action="{{ route('standards.update',$standard->id) }}" method="POST">
                         @csrf 
                         @method('put')
