@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Payment extends Model
 {
     use HasFactory;
+    
+    const COURSE = 'course';
+    const PACKAGE = 'package';
 }

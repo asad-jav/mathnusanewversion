@@ -62,6 +62,7 @@
                                             <input class="form-control" name="amount" id="amount" type="hidden" value="{{ App\Models\User::countrySpecificAmount($course) }}">
                                             <input type="hidden" name="product_name" value="{{ $course->title }}">
                                             <input type="hidden" name="course_id" value="{{ $course->id }}">
+                                            
                                             <input type="hidden" name="type"  value="{{ App\Models\Payment::COURSE }}">
                                             <input type="hidden" name="course_grade" value="{{ $course->grade->id }}">
                                             <input type="hidden" name="section_id" id="section_id" value="{{$section_id}}">
