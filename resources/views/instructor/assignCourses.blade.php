@@ -32,7 +32,7 @@
         <div class="card">
             <div class="card-header">
             @php
-                $user = App\User::find(request('user_id'));
+                $user = App\Models\User::find(request('user_id'));
             @endphp
                 <h4 class="card-title">Courses assigning &#8594; {{$user->first_name}} {{$user->last_name}} </h4>
                 <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>

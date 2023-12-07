@@ -20,7 +20,7 @@
             <div class="card-header">
                 <h4 class="card-title">All Pacakges ({{ $packages->count() }})</h4>
                 <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
-                @if (Auth::user()->roles->contains(App\User::ROLE_ADMIN))
+                @if (Auth::user()->roles->contains(App\Models\User::ROLE_ADMIN))
                 <div class="heading-elements">
                     <ul class="list-inline mb-0">
                         <a href="{{ route('package.create') }}" class=""> Create Package ></a>
@@ -58,7 +58,7 @@
                                         <td>{{ $package->amount_in_usd }} USD</td>
                                         <td>{{ $package->amount_in_kwd }} KWD</td>
                                         <td >
-                                            @if (Auth::user()->roles->contains(App\User::ROLE_ADMIN))
+                                            @if (Auth::user()->roles->contains(App\Models\User::ROLE_ADMIN))
                                                 <div class="form-group">
                                                     <a href="{{ route('package.edit', $package->id) }}" class="">Edit </a>|
                                                     <a href="{{ route('package.delete', $package->id) }}" class=" confirm"> Delete</a>

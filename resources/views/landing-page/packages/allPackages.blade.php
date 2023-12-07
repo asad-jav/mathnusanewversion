@@ -203,7 +203,7 @@
                     </ul> -->
                     </div>
                     <div class="col-sm-12 col-md-12 col-lg-2 pt-2 cus-topic-priz">
-                        <p class="mb-1"><strong>{{ App\User::countrySpecificAmount($package) }} {{ App\User::countrySpecificSymbol() }}</strong></p>
+                        <p class="mb-1"><strong>{{ App\Models\User::countrySpecificAmount($package) }} {{ App\Models\User::countrySpecificSymbol() }}</strong></p>
                         <p class="pt-2 cus-curs-btn m-0" style="">
                             @if (Auth::check())
                                 @if (Auth::user()->packages->contains($package->id))
@@ -211,7 +211,7 @@
                                 @else
                                     <form action="{{ route('payment') }}" method="POST">
                                         @csrf
-                                        <input type="hidden" name="type" value="{{ App\Plan::PACKAGE }}">
+                                        <input type="hidden" name="type" value="{{ App\Models\Plan::PACKAGE }}">
                                         <input type="hidden" name="package_id" id="package_id" value="{{ $package->id }}">
                                         <button type="submit" class="btn btn-primary cus-curs-btn btn-lg text-2 text-uppercase">Buy</button>
                                     </form>
@@ -219,7 +219,7 @@
                             @else
                                 <form action="{{ route('payment') }}" method="POST">
                                     @csrf
-                                    <input type="hidden" name="type" value="{{ App\Plan::PACKAGE }}">
+                                    <input type="hidden" name="type" value="{{ App\Models\Plan::PACKAGE }}">
                                     <input type="hidden" name="package_id" id="package_id" value="{{ $package->id }}">
                                     <button type="submit" class="btn btn-primary cus-curs-btn btn-lg text-2 text-uppercase">Buy</button>
                                 </form>

@@ -50,7 +50,7 @@
                                         <td>{{ Carbon\Carbon::parse($lecture->datetime.' '.$lecture->start_time)->setTimezone(Auth::user()->timezone) }}</td>
                                         <td>{{ $lecture->lecture_number }}</td>
                                         <td>
-                                            @if ($lecture->state == App\Lecture::ENDED)
+                                            @if ($lecture->state == App\Models\Lecture::ENDED)
                                                 <span class="text-muted">Closed</span>
                                             @else
                                                 <span class="text-success">Open</span>

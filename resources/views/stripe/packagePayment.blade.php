@@ -26,8 +26,8 @@
                                     <div class="form-row">
                                         <div class="form-group col">
                                             <label class="font-weight-bold text-dark text-2">Card holder Name</label>
-                                            <input class="form-control" name="amount" id="amount" type="hidden" value="{{ App\User::countrySpecificAmount($package) }}">
-                                            <input type="hidden" name="type"  value="{{ App\Payment::PACKAGE }}">
+                                            <input class="form-control" name="amount" id="amount" type="hidden" value="{{ App\Models\User::countrySpecificAmount($package) }}">
+                                            <input type="hidden" name="type"  value="{{ App\Models\Payment::PACKAGE }}">
                                             <input type="hidden" name="product_name" value="{{ $package->title }}">
                                             <input type="hidden" name="package_id" value="{{ $package->id }}">
 
@@ -89,8 +89,8 @@
                                                     {{ $course->title }}
                                                 </td>
                                                 <td class="product-subtotal text-right">
-                                                    {{ App\User::countrySpecificAmount($course) }}
-                                                    {{ App\User::countrySpecificSymbol() }}
+                                                    {{ App\Models\User::countrySpecificAmount($course) }}
+                                                    {{ App\Models\User::countrySpecificSymbol() }}
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -110,8 +110,8 @@
                                                 <strong class="text-dark">
                                                     <span class="amount">
                                                         <del>
-                                                            {{ App\Package::totalCoursesAmount($package->id) }}
-                                                            {{ App\User::countrySpecificSymbol() }}
+                                                            {{ App\Models\Package::totalCoursesAmount($package->id) }}
+                                                            {{ App\Models\User::countrySpecificSymbol() }}
                                                         </del>
                                                     </span>
                                                 </strong>
@@ -122,8 +122,8 @@
                                             <td>
                                                 <strong class="text-dark">
                                                     <span class="amount">
-                                                        {{ App\User::countrySpecificAmount($package) }}
-                                                        {{ App\User::countrySpecificSymbol() }}
+                                                        {{ App\Models\User::countrySpecificAmount($package) }}
+                                                        {{ App\Models\User::countrySpecificSymbol() }}
                                                     </span>
                                                 </strong>
                                             </td>
@@ -147,8 +147,8 @@
                                 <strong class="text-dark">
                                     <span class="amount">
                                         <del>
-                                            {{ App\Package::totalCoursesAmount($package->id) }}
-                                            {{ App\User::countrySpecificSymbol() }}
+                                            {{ App\Models\Package::totalCoursesAmount($package->id) }}
+                                            {{ App\Models\User::countrySpecificSymbol() }}
                                         </del>
                                     </span>
                                 </strong>
@@ -162,8 +162,8 @@
                             <td>
                                 <strong class="text-dark">
                                     <span class="amount">
-                                        {{ App\User::countrySpecificAmount($package) }}
-                                        {{ App\User::countrySpecificSymbol() }}
+                                        {{ App\Models\User::countrySpecificAmount($package) }}
+                                        {{ App\Models\User::countrySpecificSymbol() }}
                                     </span>
                                 </strong>
                             </td>

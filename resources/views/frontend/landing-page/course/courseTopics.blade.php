@@ -43,7 +43,7 @@
                     <div class="tp-mask-wrap" style="position: absolute; display: block; overflow: visible;">
                         <form action="{{ route('payment') }}" method="POST">
                             @csrf
-                            <input type="hidden" name="type" value="{{ App\Plan::COURSE }}">
+                            <input type="hidden" name="type" value="{{ App\Models\Plan::COURSE }}">
                             <input type="hidden" name="course_id" id="course_id" value="{{ $course->id }}">
                             <button type="submit" class="btn btn-outline custom-btn-outline btn-primary text-4 text-decoration-none font-weight-semibold text-color-light bg-color-hover-primary px-4 py-3 custom-btn-with-arrow">Join Our Session</button>
                         </form>

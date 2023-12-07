@@ -56,8 +56,8 @@
                                         <td>{{ $course->start_date }} &RightArrow; {{$course->end_date}} </td>
                                         <td>
                                             <select data-id="{{ $course->id }}" class="status">
-                                                <option value="1" @if($course->status == App\Course::ACTIVE) selected @endif>Active</option>
-                                                <option value="0" @if($course->status == App\Course::INACTIVE) selected @endif>Inactive</option>
+                                                <option value="1" @if($course->status == App\Models\Course::ACTIVE) selected @endif>Active</option>
+                                                <option value="0" @if($course->status == App\Models\Course::INACTIVE) selected @endif>Inactive</option>
                                             </select>
                                         </td>
                                         <td style="text-align: right; width:230px">

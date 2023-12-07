@@ -32,8 +32,8 @@
                                     <tr>
                                         <th class="text-left">Price</th>
                                         <td class="text-right">
-                                            {{ App\User::countrySpecificAmount($course) }}
-                                            <small style="font-size:12px" class="text-black">{{ App\User::countrySpecificSymbol() }}</small>
+                                            {{ App\Models\User::countrySpecificAmount($course) }}
+                                            <small style="font-size:12px" class="text-black">{{ App\Models\User::countrySpecificSymbol() }}</small>
                                         </td>
                                     </tr>
                                     <tr>

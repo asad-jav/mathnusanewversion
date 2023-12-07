@@ -59,7 +59,7 @@
                                         <td>{{ $lectureTime }}</td>
                                         <td>{{ $lecture->lecture_number }}</td>
                                         <td style="text-align: right; width:230px">
-                                            @if($lectureTime->addMinutes($lecture->duration*60)->isPast() && $lecture->state == App\Lecture::ENDED)
+                                            @if($lectureTime->addMinutes($lecture->duration*60)->isPast() && $lecture->state == App\Models\Lecture::ENDED)
                                                 {{-- view class button --}}
                                                 <div class="form-group">
                                                     <a class="btn btn-sm btn-outline-secondary" href="{{ url('class/lecture/'.$lecture->id) }}" >View Lecture</a>

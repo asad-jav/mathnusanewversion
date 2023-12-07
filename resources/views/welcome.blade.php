@@ -328,8 +328,8 @@
 													<div class="card-body bg-light-silver" style="max-height: 109px">
 														<h5 class="card-title"></h5>
 														<p class="card-text h3 text-black" >
-															{{ App\User::countrySpecificAmount($package) }}
-															<small style="font-size:12px" class="text-black">{{ App\User::countrySpecificSymbol() }}</small>
+															{{ App\Models\User::countrySpecificAmount($package) }}
+															<small style="font-size:12px" class="text-black">{{ App\Models\User::countrySpecificSymbol() }}</small>
 														</p>
 													</div>
 													
@@ -350,7 +350,7 @@
 														@else
 															<form action="{{ route('payment') }}" method="POST">
 																@csrf
-																<input type="hidden" name="type" value="{{ App\Plan::PACKAGE }}">
+																<input type="hidden" name="type" value="{{ App\Models\Plan::PACKAGE }}">
 																<input type="hidden" name="package_id" id="package_id" value="{{ $package->id }}">
 																<button type="submit" class="btn btn-primary cus-curs-btn btn-lg text-2 text-uppercase">Buy</button>
 															</form>
@@ -358,7 +358,7 @@
 														@else
 														<form action="{{ route('payment') }}" method="POST">
 															@csrf
-															<input type="hidden" name="type" value="{{ App\Plan::PACKAGE }}">
+															<input type="hidden" name="type" value="{{ App\Models\Plan::PACKAGE }}">
 															<input type="hidden" name="package_id" id="package_id" value="{{ $package->id }}">
 															<button type="submit" class="btn btn-primary cus-curs-btn btn-lg text-2 text-uppercase">Buy</button>
 														</form>
@@ -386,7 +386,7 @@
 									<div class="col-sm-12 custom-our-work overlay overlay-op-9 overlay-show p-0">
 										<div class="text-left p-relative z-index-3 py-5 px-4" >
 											<div class="card-group text-center mb-3">
-												@foreach ($grade->courses->where('end_date', '>', date('Y-m-d'))->where('status',App\Course::ACTIVE)->take(4) as $course)
+												@foreach ($grade->courses->where('end_date', '>', date('Y-m-d'))->where('status',App\Models\Course::ACTIVE)->take(4) as $course)
 													<div class="col-sm-6 col-md-3 bg-light p-0 mb-2 overflow-hidden grade" style="outline:1px solid #ededed">
 														<img src="{{ asset('public/courses_images/'.$course->image) }}" class="card-img-top" alt="..." style="min-height:0px">
 														<div class="col-12">
@@ -416,8 +416,8 @@
 																	<tr>
 																		<th class="text-left">Price</th>
 																		<td class="text-right">
-																			{{ App\User::countrySpecificAmount($course) }}
-																			<small style="font-size:12px" class="text-black">{{ App\User::countrySpecificSymbol() }}</small>
+																			{{ App\Models\User::countrySpecificAmount($course) }}
+																			<small style="font-size:12px" class="text-black">{{ App\Models\User::countrySpecificSymbol() }}</small>
 																		</td>
 																	</tr>
 																	<tr>

@@ -58,7 +58,7 @@
             @php 
                 $lectureTime = Carbon\Carbon::parse($lecture->datetime.' '.$lecture->start_time)->setTimezone(Auth::user()->timezone);
             @endphp
-            @if($lectureTime->addMinutes($lecture->duration*60)->isPast() && $lecture->state == App\Lecture::ENDED)
+            @if($lectureTime->addMinutes($lecture->duration*60)->isPast() && $lecture->state == App\Models\Lecture::ENDED)
                 <h3 class="text-danger text-center" style="padding: 30px 10px;"> Opps...! The class has been Ended. </h3>
             @else
             <form class="chat-app-input d-flex mb-5" autocomplete="off">

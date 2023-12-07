@@ -181,7 +181,7 @@
                         </ul>
                     </div>
                     <div class="col-sm-12 col-md-12 col-lg-2 pt-2 cus-topic-priz">
-                        <p><strong>{{ App\User::countrySpecificAmount($course) }} {{ App\User::countrySpecificSymbol() }} </strong></p>
+                        <p><strong>{{ App\Models\User::countrySpecificAmount($course) }} {{ App\Models\User::countrySpecificSymbol() }} </strong></p>
                         <p class="pt-2 cus-curs-btn m-0" style="">
                             @if (Auth::check())
                                 @if (Auth::user()->courses->contains($course->id))
@@ -189,7 +189,7 @@
                                 @else
                                     <form action="{{ route('payment') }}" method="POST">
                                         @csrf
-                                        <input type="hidden" name="type" value="{{ App\Plan::COURSE }}">
+                                        <input type="hidden" name="type" value="{{ App\Models\Plan::COURSE }}">
                                         <input type="hidden" name="course_id" id="course_id" value="{{ $course->id }}">
                                         <button type="submit" class="btn btn-primary cus-curs-btn btn-lg text-2 text-uppercase">Buy</button>
                                     </form>
@@ -197,7 +197,7 @@
                             @else
                                 <form action="{{ route('payment') }}" method="POST">
                                     @csrf
-                                    <input type="hidden" name="type" value="{{ App\Plan::COURSE }}">
+                                    <input type="hidden" name="type" value="{{ App\Models\Plan::COURSE }}">
                                     <input type="hidden" name="course_id" id="course_id" value="{{ $course->id }}">
                                     <button type="submit" class="btn btn-primary cus-curs-btn btn-lg text-2 text-uppercase">Buy</button>
                                 </form>

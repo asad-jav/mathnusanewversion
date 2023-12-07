@@ -57,19 +57,19 @@
                                     <tr>
                                         <th scope="row">{{$loop->iteration}}</th>
                                         <td>{{ $course->title }}</td>
-                                        <td>{{ App\Category::find($course->category_id)->name }}</td>
-                                        <td>{{ App\Grade::find($course->grade_id)->name }}</td>
+                                        <td>{{ App\Models\Category::find($course->category_id)->name }}</td>
+                                        <td>{{ App\Models\Grade::find($course->grade_id)->name }}</td>
                                         <td>{{ $course->number_of_lectures }}</td>
                                         <td>
-                                            {{ App\User::countrySpecificAmount($course) }} 
-                                            {{ App\User::countrySpecificSymbol() }}
+                                            {{ App\Models\User::countrySpecificAmount($course) }} 
+                                            {{ App\Models\User::countrySpecificSymbol() }}
                                         </td>
                                         <td style="text-align: right; width:230px">
                                             <div class="form-group">
                                                 <form action="{{ route('payment') }}" method="POST">
                                                     {{ csrf_field() }}
                                                     <input type="hidden" value="dashboard" name="request">
-                                                    <input type="hidden" name="type" value="{{ App\Plan::COURSE }}">
+                                                    <input type="hidden" name="type" value="{{ App\Models\Plan::COURSE }}">
                                                     <input type="hidden" name="course_id" id="course_id" value="{{ $course->id }}">
                                                     <button type="submit" class="btn btn-link">Buy</button>
                                                 </form>

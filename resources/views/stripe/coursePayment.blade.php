@@ -59,10 +59,10 @@
                                     <div class="form-row">
                                         <div class="form-group col">
                                             <label class="font-weight-bold text-dark text-2">Card holder Name</label>
-                                            <input class="form-control" name="amount" id="amount" type="hidden" value="{{ App\User::countrySpecificAmount($course) }}">
+                                            <input class="form-control" name="amount" id="amount" type="hidden" value="{{ App\Models\User::countrySpecificAmount($course) }}">
                                             <input type="hidden" name="product_name" value="{{ $course->title }}">
                                             <input type="hidden" name="course_id" value="{{ $course->id }}">
-                                            <input type="hidden" name="type"  value="{{ App\Payment::COURSE }}">
+                                            <input type="hidden" name="type"  value="{{ App\Models\Payment::COURSE }}">
                                             <input type="hidden" name="course_grade" value="{{ $course->grade->id }}">
                                             <input type="hidden" name="section_id" id="section_id" value="{{$section_id}}">
                                             <input type="text" name="card_holder_name" id="card_holder_name" class="form-control" placeholder="Enter card holder name here">
@@ -121,8 +121,8 @@
                                             </td>
                                             <td class="product-price text-right">
                                                 <span class="amount">
-                                                    {{ App\User::countrySpecificAmount($course) }}
-                                                    {{ App\User::countrySpecificSymbol() }}
+                                                    {{ App\Models\User::countrySpecificAmount($course) }}
+                                                    {{ App\Models\User::countrySpecificSymbol() }}
                                                 </span>
                                             </td>
                                         </tr>
@@ -139,8 +139,8 @@
                                             <td>
                                                 <strong class="text-dark">
                                                     <span class="amount">
-                                                        {{ App\User::countrySpecificAmount($course) }}
-                                                        {{ App\User::countrySpecificSymbol() }}
+                                                        {{ App\Models\User::countrySpecificAmount($course) }}
+                                                        {{ App\Models\User::countrySpecificSymbol() }}
                                                     </span>
                                                 </strong>
                                             </td>
@@ -163,8 +163,8 @@
                             <td>
                                 <strong class="text-dark">
                                     <span class="amount">
-                                        {{ App\User::countrySpecificAmount($course) }}
-                                        {{ App\User::countrySpecificSymbol() }}
+                                        {{ App\Models\User::countrySpecificAmount($course) }}
+                                        {{ App\Models\User::countrySpecificSymbol() }}
                                     </span>
                                 </strong>
                             </td>

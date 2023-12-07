@@ -40,12 +40,12 @@
                                             {{-- <a href="{{ url('student/course/lecture/'.$course->id) }}">{{ $course->title }}</a> --}}
                                             <a href="{{ route('student.course.lecture', ['course_id'=>$course->id, 'section_id'=>$course->pivot->section_id]) }}" title="Goto topics">{{ $course->title }}</a>
                                         </td>
-                                        <td>{{App\Section::getSectionNameById($course->pivot->section_id)}}</td>
+                                        <td>{{App\Models\Section::getSectionNameById($course->pivot->section_id)}}</td>
                                         <td>{{ $course->category->name }}</td>
                                         <td>{{ $course->number_of_lectures }}</td>
                                         <td>{{ $course->grade->name }}</td>
                                         <td>
-                                            {{ App\User::countrySpecificAmount($course) }} {{ App\User::countrySpecificSymbol() }}
+                                            {{ App\Models\User::countrySpecificAmount($course) }} {{ App\Models\User::countrySpecificSymbol() }}
                                         </td>
                                         <td>{{ $course->course_outline }}</td>
                                         

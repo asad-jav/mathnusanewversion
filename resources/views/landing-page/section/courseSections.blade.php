@@ -86,13 +86,13 @@
                                         @else
                                             <form action="{{ route('payment') }}" method="POST">
                                                 @csrf
-                                                <input type="hidden" name="type" value="{{ App\Plan::COURSE }}">
+                                                <input type="hidden" name="type" value="{{ App\Models\Plan::COURSE }}">
                                                 <input type="hidden" name="course_id" id="course_id" value="{{ $section->course->id }}">
                                                 <input type="hidden" name="section_id" id="section_id" value="{{$section->id}}">
                                                 <button type="submit" class="btn btn-primary cus-curs-btn text-4 text-uppercase float-right">
                                                     Join in 
-                                                    {{App\User::countrySpecificAmount($section->course)}}
-                                                    {{App\User::countrySpecificSymbol()}}
+                                                    {{App\Models\User::countrySpecificAmount($section->course)}}
+                                                    {{App\Models\User::countrySpecificSymbol()}}
                                                 </button>
                                             </form>
                                         @endif

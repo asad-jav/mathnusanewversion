@@ -47,7 +47,7 @@
                                     
                                 </div>
                                 <div class="card-footer border-top-blue-grey border-top-lighten-5 text-muted">      
-                                    <span class="float-left">{{App\User::getCurrentDateDifference($video->created_at)}}</span>
+                                    <span class="float-left">{{App\Models\User::getCurrentDateDifference($video->created_at)}}</span>
                                     @if (Auth::user()->roles[0]->slug == 'admin')
                                     <span class="tags float-right">
                                         <a href="{{ url('video/edit/'.$video->id) }}" class="card-link"> Edit </a>

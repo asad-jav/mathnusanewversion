@@ -211,7 +211,7 @@
                                 @else
                                     <form action="{{ route('payment') }}" method="POST">
                                         @csrf
-                                        <input type="hidden" name="type" value="{{ App\Plan::PACKAGE }}">
+                                        <input type="hidden" name="type" value="{{ App\Models\Plan::PACKAGE }}">
                                         <input type="hidden" name="package_id" id="package_id" value="{{ $package->id }}">
                                         <button type="submit" class="btn btn-primary cus-curs-btn btn-lg text-2 text-uppercase">Buy</button>
                                     </form>
@@ -219,7 +219,7 @@
                             @else
                                 <form action="{{ route('payment') }}" method="POST">
                                     @csrf
-                                    <input type="hidden" name="type" value="{{ App\Plan::PACKAGE }}">
+                                    <input type="hidden" name="type" value="{{ App\Models\Plan::PACKAGE }}">
                                     <input type="hidden" name="package_id" id="package_id" value="{{ $package->id }}">
                                     <button type="submit" class="btn btn-primary cus-curs-btn btn-lg text-2 text-uppercase">Buy</button>
                                 </form>

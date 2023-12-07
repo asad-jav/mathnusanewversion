@@ -95,7 +95,7 @@
                         @php
                         $user = $lecture->user;
                         @endphp
-                        @if (Auth::user()->roles->contains(App\User::ROLE_STUDENT))
+                        @if (Auth::user()->roles->contains(App\Models\User::ROLE_STUDENT))
                         @foreach ($users as $user)
                         @if($user->isInstructor())
                         <a href="#" id="user_{{ $user->id }}" data-id="{{ $user->id }}" data-type="private"
