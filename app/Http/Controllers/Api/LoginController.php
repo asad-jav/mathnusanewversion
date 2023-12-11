@@ -28,20 +28,9 @@ class LoginController extends Controller
         {
             $token = $user->createToken('Personal Access Token')->plainTextToken;
             $response = ['user'=>$user,'token'=>$token];
-            return response()->json($response,200);
-        }
-        $response = ['message'=>'Credentails does not match our records'];
-        return response()->json($response,400);
+            return $this->sendResponse($response, 'User login successfully.');
+        } 
+        return $this->sendError('Credentails does not match our records',[],400);
     }
-    // public function login(Request $request): JsonResponse
-    // { 
-    //     if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-    //         $user = Auth::user();
-    //         $success['token'] =  $user->createToken('MyApp')->plainTextToken;
-    //         $success['user'] =  $user;
-    //         return $this->sendResponse($success, 'User login successfully.');
-    //     } else {
-    //         return $this->sendError('Unauthorised.', ['error' => 'Unauthorised']);
-    //     }
-    // }
+  
 }

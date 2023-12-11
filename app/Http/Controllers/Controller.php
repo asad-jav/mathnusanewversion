@@ -14,9 +14,10 @@ class Controller extends BaseController
     {
 
         $response = [
-            'success' => true,
-            'data'    => $result,
-            'message' => $message,
+            'statusCode'    => 200,
+            'success'       => true,
+            'message'       => $message,
+            'data'          => $result,
         ];
         return response()->json($response, 200);
     }
@@ -32,6 +33,7 @@ class Controller extends BaseController
     public function sendError($error, $errorMessages = [], $code = 404)
     {
         $response = [
+            'statusCode' => $code,
             'success' => false,
             'message' => $error,
         ];

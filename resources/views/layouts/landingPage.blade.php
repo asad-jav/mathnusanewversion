@@ -13,8 +13,8 @@
 		<meta name="author" content="okler.net">
 
 		<!-- Favicon -->
-		<link rel="shortcut icon" href="{{ asset('public') }}/app-assets/images/logo/t-logo.png" type="image/x-icon" />
-		<link rel="apple-touch-icon" href="{{ asset('public/landing-page') }}/img/apple-touch-icon.png">
+		<link rel="shortcut icon" href="{{ asset('backend/app-assets/images/logo/t-logo.png')}}" type="image/x-icon" />
+		<link rel="apple-touch-icon" href="{{ asset('backend/landing-page/img/apple-touch-icon.png') }}">
 
 		<!-- Mobile Metas -->
 		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
@@ -23,33 +23,33 @@
 		<link href="https://fonts.googleapis.com/css?family=family=Lora:400,400i,700,700i|Poppins:300,400,500,600,700,800,900&display=swap" rel="stylesheet" type="text/css">
 
 		<!-- Vendor CSS -->
-		<link rel="stylesheet" href="{{ asset('public/landing-page') }}/vendor/bootstrap/css/bootstrap.min.css">
-		<link rel="stylesheet" href="{{ asset('public/landing-page') }}/vendor/fontawesome-free/css/all.min.css">
-		<link rel="stylesheet" href="{{ asset('public/landing-page') }}/vendor/animate/animate.min.css">
-		<link rel="stylesheet" href="{{ asset('public/landing-page') }}/vendor/simple-line-icons/css/simple-line-icons.min.css">
-		<link rel="stylesheet" href="{{ asset('public/landing-page') }}/vendor/owl.carousel/assets/owl.carousel.min.css">
-		<link rel="stylesheet" href="{{ asset('public/landing-page') }}/vendor/owl.carousel/assets/owl.theme.default.min.css">
-		<link rel="stylesheet" href="{{ asset('public/landing-page') }}/vendor/magnific-popup/magnific-popup.min.css">
+		<link rel="stylesheet" href="{{ asset('backend/landing-page/vendor/bootstrap/css/bootstrap.min.css') }}">
+		<link rel="stylesheet" href="{{ asset('backend/landing-page/vendor/fontawesome-free/css/all.min.css') }}">
+		<link rel="stylesheet" href="{{ asset('backend/landing-page/vendor/animate/animate.min.css') }}">
+		<link rel="stylesheet" href="{{ asset('backend/landing-page/vendor/simple-line-icons/css/simple-line-icons.min.css') }}">
+		<link rel="stylesheet" href="{{ asset('backend/landing-page/vendor/owl.carousel/assets/owl.carousel.min.css') }}">
+		<link rel="stylesheet" href="{{ asset('backend/landing-page/vendor/owl.carousel/assets/owl.theme.default.min.css') }}">
+		<link rel="stylesheet" href="{{ asset('backend/landing-page/vendor/magnific-popup/magnific-popup.min.css') }}">
 
 		<!-- Theme CSS -->
-		<link rel="stylesheet" href="{{ asset('public/landing-page') }}/css/theme.css">
-		<link rel="stylesheet" href="{{ asset('public/landing-page') }}/css/theme-elements.css">
-		<link rel="stylesheet" href="{{ asset('public/landing-page') }}/css/theme-blog.css">
-		<link rel="stylesheet" href="{{ asset('public/landing-page') }}/css/theme-shop.css">
+		<link rel="stylesheet" href="{{ asset('backend/landing-page/css/theme.css') }}">
+		<link rel="stylesheet" href="{{ asset('backend/landing-page/css/theme-elements.css') }}">
+		<link rel="stylesheet" href="{{ asset('backend/landing-page/css/theme-blog.css') }}">
+		<link rel="stylesheet" href="{{ asset('backend/landing-page/css/theme-shop.css') }}">
 
 		<!-- Current Page CSS -->
-		<link rel="stylesheet" href="{{ asset('public/landing-page') }}/vendor/rs-plugin/css/settings.css">
-		<link rel="stylesheet" href="{{ asset('public/landing-page') }}/vendor/rs-plugin/css/layers.css">
-		<link rel="stylesheet" href="{{ asset('public/landing-page') }}/vendor/rs-plugin/css/navigation.css">
+		<link rel="stylesheet" href="{{ asset('backend/landing-page/vendor/rs-plugin/css/settings.css') }}">
+		<link rel="stylesheet" href="{{ asset('backend/landing-page/vendor/rs-plugin/css/layers.css') }}">
+		<link rel="stylesheet" href="{{ asset('backend/landing-page/vendor/rs-plugin/css/navigation.css') }}">
 		
 		<!-- Demo CSS -->
-		<link rel="stylesheet" href="{{ asset('public/landing-page') }}/css/demos/demo-digital-agency-2.css">
+		<link rel="stylesheet" href="{{ asset('backend/landing-page/css/demos/demo-digital-agency-2.css') }}">
 
 		<!-- Skin CSS -->
-		<link rel="stylesheet" href="{{ asset('public/landing-page') }}/css/skins/skin-digital-agency-2.css"> 
+		<link rel="stylesheet" href="{{ asset('backend/landing-page/css/skins/skin-digital-agency-2.css') }}"> 
 
 		<!-- Theme Custom CSS -->
-		<link rel="stylesheet" href="{{ asset('public/landing-page') }}/css/custom.css">
+		<link rel="stylesheet" href="{{ asset('backend/landing-page/css/custom.css') }}">
 		<!-- Demo CSS -->
 		
 		<style>
@@ -189,7 +189,7 @@
 
 		</style>
 		<!-- Head Libs -->
-		<script src="{{ asset('public/landing-page') }}/vendor/modernizr/modernizr.min.js"></script>
+		<script src="{{ asset('backend/landing-page/vendor/modernizr/modernizr.min.js')}}"></script>
 		@yield('css')
 	</head>
 	<body data-spy="scroll" data-target="#mainNav" data-offset="50">
@@ -202,7 +202,7 @@
 								<div class="header-row">
 									<div class="header-logo">
 									  <a href="#">
-											<img alt="Porto" height="59" src="{{ asset('public/app-assets/images/logo/logo-lite-version.svg') }}">
+											<img alt="Porto" height="59" src="{{ asset('backend/app-assets/images/logo/logo-lite-version.svg') }}">
 											<span class="appear-animation animated fadeInRightShorter appear-animation-visible" data-appear-animation="fadeInRightShorter" data-appear-animation-delay="600" data-appear-animation-duration="800"><span class="d-inline-block text-primary highlighted-word-animation-1 alternative-font-3 font-weight-bold   ml-2">MATHNUSA</span></span>
 										</a> 
 									</div>
@@ -393,7 +393,7 @@
 									<div class="  mb-5 appear-animation animated fadeIn appear-animation-visible" data-appear-animation="fadeIn" data-appear-animation-delay="600" data-appear-animation-duration="750" style="animation-delay: 1200ms;">
 										<div class="border-width-10 border-color-light clearfix border border-radius">
 											<video class="float-left" width="100%" height="100%" autoplay="" muted="" loop="">
-													<source src="{{ asset('public/landing-page') }}/video/Outro.mp4" type="video/mp4">
+													<source src="{{ asset('backend/landing-page/video/Outro.mp4')}}" type="video/mp4">
 											</video>
 										</div>
 									</div>
@@ -448,41 +448,41 @@
 		</div>
 
 		<!-- Vendor -->
-		<script src="{{ asset('public/landing-page') }}/vendor/jquery/jquery.min.js"></script>
-		<script src="{{ asset('public/landing-page') }}/vendor/jquery.appear/jquery.appear.min.js"></script>
-		<script src="{{ asset('public/landing-page') }}/vendor/jquery.easing/jquery.easing.min.js"></script>
-		<script src="{{ asset('public/landing-page') }}/vendor/jquery.cookie/jquery.cookie.min.js"></script>
-		<script src="{{ asset('public/landing-page') }}/vendor/popper/umd/popper.min.js"></script>
-		<script src="{{ asset('public/landing-page') }}/vendor/bootstrap/js/bootstrap.min.js"></script>
-		<script src="{{ asset('public/landing-page') }}/vendor/common/common.min.js"></script>
-		<script src="{{ asset('public/landing-page') }}/vendor/jquery.validation/jquery.validate.min.js"></script>
-		<script src="{{ asset('public/landing-page') }}/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
-		<script src="{{ asset('public/landing-page') }}/vendor/jquery.gmap/jquery.gmap.min.js"></script>
-		<script src="{{ asset('public/landing-page') }}/vendor/jquery.lazyload/jquery.lazyload.min.js"></script>
-		<script src="{{ asset('public/landing-page') }}/vendor/isotope/jquery.isotope.min.js"></script>
-		<script src="{{ asset('public/landing-page') }}/vendor/owl.carousel/owl.carousel.min.js"></script>
-		<script src="{{ asset('public/landing-page') }}/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
-		<script src="{{ asset('public/landing-page') }}/vendor/vide/jquery.vide.min.js"></script>
-		<script src="{{ asset('public/landing-page') }}/vendor/vivus/vivus.min.js"></script>
+		<script src="{{ asset('backend/landing-page/vendor/jquery/jquery.min.js')}}"></script>
+		<script src="{{ asset('backend/landing-page/vendor/jquery.appear/jquery.appear.min.js')}}"></script>
+		<script src="{{ asset('backend/landing-page/vendor/jquery.easing/jquery.easing.min.js')}}"></script>
+		<script src="{{ asset('backend/landing-page/vendor/jquery.cookie/jquery.cookie.min.js')}}"></script>
+		<script src="{{ asset('backend/landing-page/vendor/popper/umd/popper.min.js')}}"></script>
+		<script src="{{ asset('backend/landing-page/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+		<script src="{{ asset('backend/landing-page/vendor/common/common.min.js')}}"></script>
+		<script src="{{ asset('backend/landing-page/vendor/jquery.validation/jquery.validate.min.js')}}"></script>
+		<script src="{{ asset('backend/landing-page/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js')}}"></script>
+		<script src="{{ asset('backend/landing-page/vendor/jquery.gmap/jquery.gmap.min.js')}}"></script>
+		<script src="{{ asset('backend/landing-page/vendor/jquery.lazyload/jquery.lazyload.min.js')}}"></script>
+		<script src="{{ asset('backend/landing-page/vendor/isotope/jquery.isotope.min.js')}}"></script>
+		<script src="{{ asset('backend/landing-page/vendor/owl.carousel/owl.carousel.min.js')}}"></script>
+		<script src="{{ asset('backend/landing-page/vendor/magnific-popup/jquery.magnific-popup.min.js')}}"></script>
+		<script src="{{ asset('backend/landing-page/vendor/vide/jquery.vide.min.js') }}"></script>
+		<script src="{{ asset('backend/landing-page/vendor/vivus/vivus.min.js') }}"></script>
 		
 		<!-- Theme Base, Components and Settings -->
-		<script src="{{ asset('public/landing-page') }}/js/theme.js"></script>
+		<script src="{{ asset('backend/landing-page/js/theme.js') }}"></script>
 		
 		<!-- Current Page Vendor and Views -->
-		<script src="{{ asset('public/landing-page') }}/vendor/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
-		<script src="{{ asset('public/landing-page') }}/vendor/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+		<script src="{{ asset('backend/landing-page/vendor/rs-plugin/js/jquery.themepunch.tools.min.js') }}"></script>
+		<script src="{{ asset('backend/landing-page/vendor/rs-plugin/js/jquery.themepunch.revolution.min.js') }}"></script>
 
 		<!-- Current Page Vendor and Views -->
-		<script src="{{ asset('public/landing-page') }}/js/views/view.contact.js"></script>
+		<script src="{{ asset('backend/landing-page/js/views/view.contact.js') }}"></script>
 
 		<!-- Demo -->
-		<script src="{{ asset('public/landing-page') }}/js/demos/demo-digital-agency-2.js"></script>
+		<script src="{{ asset('backend/landing-page/js/demos/demo-digital-agency-2.js') }}"></script>
 
 		<!-- Theme Custom -->
-		<script src="{{ asset('public/landing-page') }}/js/custom.js"></script>
+		<script src="{{ asset('backend/landing-page/js/custom.js') }}"></script>
 		
 		<!-- Theme Initialization Files -->
-		<script src="{{ asset('public/landing-page') }}/js/theme.init.js"></script>
+		<script src="{{ asset('backend/landing-page/js/theme.init.js') }}"></script>
 
 		<script async="" src="https://static.codepen.io/assets/embed/ei.js"></script>
 

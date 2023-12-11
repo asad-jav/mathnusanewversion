@@ -15,11 +15,11 @@ class ProfileController extends Controller
         $user = Auth::user();
         if($user)
         {
-            return response()->json(['message' => 'User Found','user' => $user], 200);
+            return $this->sendResponse($user, 'User Found.');
         }
         else
-        {
-            return response()->json(['error' => 'User Not Found'], 404);
+        { 
+            return $this->sendError('User Not Found',[],400); 
         }
     }
 
@@ -30,26 +30,29 @@ class ProfileController extends Controller
         {
             if(empty($request->old_password) || empty($request->new_password))
             {
-                return response()->json(["error" => "Old Password and New Password fields are Required"],401);
+                return $this->sendError('Old Password and New Password fields are Required',[],401);  
             }
             if($request->new_password != $request->new_password_confirmation)
             {
-                return response()->json(["error"=>"New Password Doesn't match with Confirm Password"],401);
+                
+                return $this->sendError("New Password Doesn't match with Confirm Password",[],401);   
             }
             #Match The Old Password
             if(!Hash::check($request->old_password, auth()->user()->password)){
-                return response()->json(["error"=>"Old Password Doesn't match!"],401);
+                
+                return $this->sendError("Old Password Doesn't match!",[],401);    
             }
 
             #Update the new Password
             User::whereId(auth()->user()->id)->update([
                 'password' => Hash::make($request->new_password)
             ]);
-            return response()->json(['message' => 'Password changed successfully'], 200);
+            
+            return $this->sendResponse([], 'Password changed successfully'); 
         }
         else
         {
-            return response()->json(['error' => 'Unauthorized'], 400);
+            return $this->sendError("Unauthorized",[],400);    
         }
     }
 }
