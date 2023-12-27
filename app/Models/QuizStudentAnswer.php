@@ -12,6 +12,14 @@ class QuizStudentAnswer extends Model
         'student_id',
         'quiz_id',
         'question_id',
+        'quiz_student_score_id',
+        'question_type',
         'student_answer',
+        'status',
+        'score'
     ];
+
+    public function question(){
+        return $this->belongsTo(QuizQuestion::class,'question_id');
+    }
 }

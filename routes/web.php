@@ -276,6 +276,10 @@ Route::prefix('admin')->group(function () {
     Route::get('get-grade-courses',[QuizizzController::class,'get_grade_courses'])->name('get-grade-courses');
     Route::get('get_standard_detail',[QuizizzController::class,'get_standard_detail'])->name('get_standard_detail');
     Route::post('import-questions',[QuizizzController::class,'import_questions'])->name('import-questions');
+    Route::get('student/quizizz/view/{id}',[QuizizzController::class,'studentQuizizz']);
+    Route::get('student/quizizz/answers/{id}/{student_id}',[QuizizzController::class,'studentQuizizzAnswer']);
+    Route::post('quiz/question/student/answer',[StudentQuizizzController::class,'markStudentAnswer']);
+
     // Route::resource('quizz-question','Quizizz\QuizizzQuestionController')->middleware(['auth','verified']);
       Route::prefix('quizz-question')->middleware(['auth','verified'])->group(function(){
         Route::get('create/{id}', [QuizizzQuestionController::class,'create']);  

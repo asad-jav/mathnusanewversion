@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'All Quizizz')
+@section('title', 'Complete Quizizz')
 @section('css')
 <link rel="stylesheet" href="{{asset('public/assets/font-awesome.min.css')}}">
 <style>
@@ -87,48 +87,42 @@
             {{ Session::get('failure') }}
         </div>
         @endif
-        <h1> {{$title ?? 'ALL Quizizz'}} </h1>
+        <h1> Complete Quizizz </h1>
         <div class="row mt-4">
             @if(count($quizizzes) > 0)
             @foreach($quizizzes as $quiz)
             <div class="col-md-4">
                 <div class="quiz-card">
-                    <h3 class="quiz-name mt-1">{{$quiz->title}}</h3>
-                    <p title="{{$quiz->description}}">
-                        {{$quiz->description}}
+                    <h3 class="quiz-name mt-1">{{$quiz->quiz->title ?? ''}}</h3>
+                    <p title="{{$quiz->quiz->description}}">
+                        {{$quiz->quiz->description}}
                     </p>
                     <div class="row">
                         <div class="col-xs-6 pad-0">
                             <ul class="topic-detail"> 
                                 <li>Total Marks <i class="ft-arrow-right"></i></li>
                                 <li>Total Questions <i class="ft-arrow-right"></i></li>
-                                <li>Start Date <i class="ft-arrow-right"></i></li>
-                                <li>End Date <i class="ft-arrow-right"></i></li>
-                                <li>Status <i class="ft-arrow-right"></i></li>
+                                <li>Completed Date <i class="ft-arrow-right"></i></li>
+                                <li>Result Status <i class="ft-arrow-right"></i></li>
                             </ul>
                         </div>
                         <div class="col-xs-6">
                             <ul class="topic-detail right"> 
                                 <li>
-                                    {{$quiz->totalquestions->sum('points')}}
+                                    {{$quiz->quiz->totalquestions->sum('points')}}
                                 </li>
                                 <li>
                                 
-                                {{$quiz->totalquestions->count()}}
+                                {{$quiz->quiz->totalquestions->count()}}
                                 </li>
                                 <li>
-                                    {{date('Y-m-d',strtotime($quiz->start_date))}}
+                                {{date('Y-m-d',strtotime($quiz->recorded_on))}}
                                 </li> 
                                 <li>
-                                {{date('Y-m-d',strtotime($quiz->end_date))}} 
-                                </li>
-                                <li>
-                                    @if($quiz->status == 0)
-                                        <span class="badge badge-danger">Disable</span>
-                                    @elseif($quiz->status == 1)
-                                        <span class="badge badge-success">Enable</span>
-                                    @elseif($quiz->status == 2)
-                                        <span class="badge badge-primary">Completed</span>
+                                    @if($quiz->report_status == 0)
+                                        <span class="badge badge-danger">Pending</span>
+                                    @elseif($quiz->report_status == 1)
+                                        <span class="badge badge-success">Active</span>
                                     @endif 
                                 </li>
                             </ul>
@@ -137,11 +131,9 @@
                     <div class="row">
                         <div class="col-md-12 text-center">
                             <hr>
-                            @if($quiz->status == 0)
-                            <button class="btn btn-warning text-white" disabled>Disabled</button>
-                            @elseif($quiz->status == 1)
-                            <a href="{{url('student/quizizz',$quiz->id)}}" class="btn btn-primary text">Start Quizz</a>
-                            @elseif($quiz->status == 2) 
+                            @if($quiz->report_status == 0)
+                            <button class="btn btn-warning text-white" disabled>Pending Report</button>
+                            @elseif($quiz->report_status == 1) 
                             <a href="{{url('student/quizizz/report',$quiz->id)}}" class="btn btn-success text">Show Report</a>
                             @endif 
                         </div>

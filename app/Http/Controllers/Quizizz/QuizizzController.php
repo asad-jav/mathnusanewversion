@@ -9,64 +9,76 @@ use App\Models\Grade;
 use App\Models\CourseUser;
 use App\Models\Quizizz;
 use App\Models\QuizQuestion;
+use App\Models\QuizStudentAnswer;
+use App\Models\QuizStudentScore;
 use App\Models\Standard;
 use DataTables;
+use Faker\Provider\ar_EG\Company;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 class QuizizzController extends Controller
 {
     public function index(Request $request)
     {
-        if(Auth::check() && Auth::user()->isInstructor()) 
-        {
-            $courses = Auth::user()->courses; 
-            $subcorses = $courses->pluck('id')->toArray(); 
-            if ($request->ajax()) {
-            
-                $data = Quizizz::with('course')->whereIn('course_id',$subcorses)->select('*'); 
-            }
-        } 
-        else 
-        {
-            $courses = Course::all();
-            if ($request->ajax())
+        if(Auth::user()->isInstructor() || Auth::user()->isAdmin()){
+            if(Auth::check() && Auth::user()->isInstructor()) 
             {
-                $data = Quizizz::with('course')->select('*'); 
-            }
-        }
-
-        if ($request->ajax()) 
-        {
-            return Datatables::of($data)
-            ->addIndexColumn()
-            ->addColumn('action', function($row){
-                    $btn = '<a href='.route("quizizz.show","$row->id").' data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Show">View</a> |';
-                    $url = route('quizizz.edit',$row->id);
-                    $btn =  $btn.' <a href="'.$url.'" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit editQuizizz">Edit</a> |';
-
-                    $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class=" deleteQuizizz">Delete </a>';
-
-                    return $btn;
-            })->addColumn('course', function ($row) {
+                $courses = Auth::user()->courses; 
+                $subcorses = $courses->pluck('id')->toArray(); 
+                if ($request->ajax()) {
                 
-                    return $row->course->title;
-        
-            })->addColumn('status', function ($row) {
-                if($row->status == 0){
-                    $status = '<span class="badge badge-danger">Disable</span>';
-                }else if($row->status == 1){
-                    $status = '<span class="badge badge-success">Enable</span>';
-                }else if($row->status == 2){
-                    $status = '<span class="badge badge-primary">Complete</span>';
+                    $data = Quizizz::with('course')->whereIn('course_id',$subcorses)->select('*'); 
                 }
-                return $status;
-    
-            })
-            ->rawColumns(['action','status'])
-            ->make(true);
-        } 
-        $grades = Grade::all();
-        return view('quizizz.quizizz.index',compact('courses','grades'));
+            } 
+            else 
+            {
+                $courses = Course::all();
+                if ($request->ajax())
+                {
+                    $data = Quizizz::with('course')->select('*'); 
+                }
+            }
+
+            if ($request->ajax()) 
+            {
+                return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function($row){
+                        $btn = '<div class="btn-group" role="group" aria-label="Basic example">';
+                        $btn = $btn.' <a href='.route("quizizz.show","$row->id").' data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="view" title="view" class="btn btn-sm btn-primary"><i class="ft-eye"></i></a>';
+                        
+                        $url1 = url('student/quizizz/view',$row->id);
+                        $btn = $btn.' <a href="'.$url1.'" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Students Quizizz"  title="Students Quizizz"  class="btn btn-sm btn-secondary"><i class="ft-users"></i> </a>';
+                
+                        $url = route('quizizz.edit',$row->id);
+                        $btn =  $btn.' <a href="'.$url.'" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit"  title="Edit" class="edit editQuizizz btn btn-sm btn-success"><i class="ft-edit"></i></a>';
+
+                        $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete"  title="Delete"  class=" deleteQuizizz btn btn-sm btn-danger"><i class="ft-trash"></i> </a>';
+                        $btn = $btn.'</div>';
+                        return $btn;
+                })->addColumn('course', function ($row) {
+                    
+                        return $row->course->title;
+            
+                })->addColumn('status', function ($row) {
+                    if($row->status == 0){
+                        $status = '<span class="badge badge-danger">Disable</span>';
+                    }else if($row->status == 1){
+                        $status = '<span class="badge badge-success">Enable</span>';
+                    }else if($row->status == 2){
+                        $status = '<span class="badge badge-primary">Complete</span>';
+                    }
+                    return $status;
+        
+                })
+                ->rawColumns(['action','status'])
+                ->make(true);
+            } 
+            $grades = Grade::all();
+            return view('quizizz.quizizz.index',compact('courses','grades'));
+        }else{
+            return back()->with(['status' => 'failure','message' => "you don't have access of this page"]);
+        }
     }
 
     public function create(){
@@ -219,5 +231,17 @@ class QuizizzController extends Controller
             
         }
         return back()->with('success','Question Imported Successfully');
+    }
+
+    public function studentQuizizz($id){ 
+        $quiz = Quizizz::where('id',$id)->first(); 
+        $quizizz = QuizStudentScore::with('quiz','student','student_answers')->where('quiz_id',$id)->get(); 
+        return view('quizizz.quizizz.studentQuiz',Compact('quizizz','quiz'));
+    }
+
+    public function studentQuizizzAnswer($quiz_id,$student_id){ 
+        $quizizz = QuizStudentScore::with('student')->where('id',$quiz_id)->where('student_id',$student_id)->first(); 
+        $answers = QuizStudentAnswer::with('question')->where('quiz_student_score_id',$quiz_id)->where('student_id',$student_id)->get(); 
+        return view('quizizz.quizizz.studentQuizAnswer',compact('quizizz','answers'));
     }
 }

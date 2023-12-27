@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('student_id')->nullable();
             $table->integer('quiz_id')->nullable();
             $table->integer('score')->nullable();
+            $table->integer('report_status')->nullable();
             $table->timestamp('recorded_on')->nullable();
             $table->timestamps();
         });

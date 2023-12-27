@@ -37,7 +37,7 @@
                         </li>
                     </ul>
                 </li>  
-                <li class="nav-item">
+                <li class="nav-item {{ Request::is('student/quizizz') || Request::is('student/quiz/live-quizz') || Request::is('student/quiz/complete-quizz') ? 'active' : ''}}">
                     <a href="#">
                         <i class="ft-book"></i>
                         <span class="menu-title" data-i18n="">Quizziz</span>
