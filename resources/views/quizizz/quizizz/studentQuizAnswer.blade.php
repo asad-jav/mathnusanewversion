@@ -135,7 +135,7 @@
                                             @php
                                                         $url = url('quiz/question/student/answer');
                                             @endphp
-                                            <a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="editStudenQuiz('{{$quiziz->question->question}}','{{$quiziz->student_answer}}','{{$quiziz->question->points}}','{{$url}}','{{$quiziz->id}}')" title="Marke students Points"><i class="ft-edit"></i></a>
+                                            <a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="editStudenQuiz('{{$quiziz->question->question}}','{{$quiziz->student_answer}}','{{$quiziz->question->points}}','{{$url}}','{{$quiziz->id}}')" title="Marke students Points" data-toggle="tooltip"><i class="ft-edit"></i></a>
                                         </div>
                                         @endif
                                     </td>

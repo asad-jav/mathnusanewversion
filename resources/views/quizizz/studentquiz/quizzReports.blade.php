@@ -14,15 +14,18 @@
             {{ Session::get('failure') }}
         </div>
         @endif
-        <h1>Quizizz Report</h1>
+        <h1>Quizizz Report 
+            <a href="{{url('student/quizizz/view',$quiz->id)}}" class="btn btn-danger" style="float:right"><i class="ft-arrow-left"></i>Back</a> 
+        </h1>
+        
         <div class="card">
             <div id="invoice-template" class="card-body">
                 <!-- Invoice Company Details -->
                 <div id="invoice-print">
                     <div id="invoice-company-details" class="row">
                         <div class="col-md-6 col-sm-12 text-left text-md-left">
-                            <img src="{{asset('public/app-assets/images/logo/t-logo.png')}}" alt="company logo" class="mb-2" width="70">
-                            <ul class="px-0 list-unstyled">
+                            <img src="{{asset('backend/app-assets/images/logo/t-logo.png')}}" alt="company logo" class="mb-2" width="70">
+                            <ul class="px-0 list-unstyled"> 
                                 <li class="text-bold-700">Title: {{$quiz->title}}</li>
                                 <li>Course: {{$quiz->course->title}}</li>
                             </ul>
@@ -39,17 +42,31 @@
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
+                                            <th  class="text-center">Student</th>
                                             <th  class="text-center">Total Questions</th>
-                                            <th  class="text-center">Total Question Marks</th>
-                                            <th  class="text-center">My Marks</th>
+                                            <th  class="text-center">Total Question Marks</th> 
+                                            <th  class="text-center">Total Passing Marks</th>
+                                            <th  class="text-center">Student Marks</th>
+                                            <th  class="text-center"> Status </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr> 
-                                            <td class="text-center"> {{count($questions) ?? 0}} </td>
-                                            <td class="text-center"> {{$questions->sum('points') ?? 0}} </td>
-                                            <td class="text-center">{{$studentQuiz->score ?? 0}} </td>
+                                        @foreach($data as $quizdata)
+                                        <tr>
+                                            <td>{{$quizdata->student->first_name ?? ''}} {{$quizdata->student->last_name ?? ''}}</td> 
+                                            <td class="text-center text-sm"> {{$quizdata->totalquestion ?? 0}} </td>
+                                            <td class="text-center text-sm"> {{$quizdata->totalquizmarked ?? 0}} </td> 
+                                            <td class="text-center text-sm"> {{$quizdata->quiz->passing_marks ?? 0}} </td>
+                                            <td class="text-center text-sm"> {{$quizdata->studentscore ?? 0}} </td>
+                                            <td class="text-center"> 
+                                                @if( $quizdata->studentscore > $quizdata->quiz->passing_marks)
+                                                    <span class="badge badge-success">Passed</span>
+                                                @else
+                                                    <span class="badge badge-danger">Failed</span>
+                                                @endif
+                                            </td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

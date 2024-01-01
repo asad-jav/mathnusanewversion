@@ -119,9 +119,9 @@
                                 {{date('Y-m-d',strtotime($quiz->recorded_on))}}
                                 </li> 
                                 <li>
-                                    @if($quiz->report_status == 0)
+                                    @if($quiz->quiz->report_status == 0)
                                         <span class="badge badge-danger">Pending</span>
-                                    @elseif($quiz->report_status == 1)
+                                    @elseif($quiz->quiz->report_status == 1)
                                         <span class="badge badge-success">Active</span>
                                     @endif 
                                 </li>
@@ -131,9 +131,9 @@
                     <div class="row">
                         <div class="col-md-12 text-center">
                             <hr>
-                            @if($quiz->report_status == 0)
+                            @if($quiz->quiz->report_status == 0)
                             <button class="btn btn-warning text-white" disabled>Pending Report</button>
-                            @elseif($quiz->report_status == 1) 
+                            @elseif($quiz->quiz->report_status == 1) 
                             <a href="{{url('student/quizizz/report',$quiz->id)}}" class="btn btn-success text">Show Report</a>
                             @endif 
                         </div>

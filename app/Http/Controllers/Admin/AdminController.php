@@ -26,13 +26,12 @@ class AdminController extends Controller
             'email' => 'email|required',
             'password' => 'required'
         ]);
-        
         $credentials = [
             'email' => $request->email,
             'password' => $request->password,
             'role_id' => 1
-        ];
-
+        ]; 
+       
         if(Auth::attempt($credentials)) {
             return redirect('admin/dashboard');
         } else {

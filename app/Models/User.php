@@ -126,11 +126,11 @@ class User extends Authenticatable
         return $this->roles[0]->slug == User::ADMIN;
     }
 
-    public function isStudent() {
+    public function isStudent() { 
         return $this->roles[0]->slug == User::STUDENT;
     }
-
-    public function isInstructor() {
+    
+    public function isInstructor() { 
         return $this->roles[0]->slug == User::INSTRUCTOR;
     }
 

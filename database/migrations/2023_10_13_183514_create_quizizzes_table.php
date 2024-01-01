@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->integer('status')->nullable();
+            $table->integer('report_status')->default(0);
             $table->integer('easy_level')->default(0);
             $table->integer('average_level')->default(0);
             $table->integer('difficult_level')->default(0);
