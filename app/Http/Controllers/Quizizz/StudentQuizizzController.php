@@ -198,7 +198,9 @@ class StudentQuizizzController extends Controller
         $quiz = Quizizz::where('id',$quizz_id)->first();
         $data = QuizStudentScore::with(['student', 'student_answers', 'quiz'])
         ->selectRaw('
-            quiz_student_scores.*,
+            quiz_student_scores.id,
+            quiz_student_scores.student_id,
+            quiz_student_scores.quiz_id,
             COUNT(quiz_questions.id) as totalquestion,
             SUM(quiz_questions.points) as totalquizmarked,
             SUM(quiz_student_answers.score) as studentscore,
@@ -212,8 +214,12 @@ class StudentQuizizzController extends Controller
                 ->on('quiz_student_answers.student_id', '=', 'quiz_student_scores.student_id');
         })
         ->where('quiz_student_scores.quiz_id', $quizz_id)
-        ->groupBy('quiz_student_scores.id', 'quiz_student_scores.student_id') // Include 'student_id' in the GROUP BY clause
-        ->get(); 
+        ->groupBy(
+            'quiz_student_scores.id',
+            'quiz_student_scores.student_id',
+            'quiz_student_scores.quiz_id'
+        )
+        ->get();
     
         return view('Quizizz.Studentquiz.quizzReports',compact('quiz','data'));
     }
