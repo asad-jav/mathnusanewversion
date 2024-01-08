@@ -221,7 +221,7 @@ class StudentQuizizzController extends Controller
         )
         ->get();
     
-        return view('Quizizz.Studentquiz.quizzReports',compact('quiz','data'));
+        return view('quizizz.studentquiz.quizzReports',compact('quiz','data'));
     }
     
 
