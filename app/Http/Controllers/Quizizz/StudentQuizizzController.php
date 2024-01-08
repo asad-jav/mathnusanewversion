@@ -121,7 +121,7 @@ class StudentQuizizzController extends Controller
                                 'falsequestion'   => $falsequestion,
                                 'rightquestion'   => $rightquestion
                          ];
-        return view('Quizizz.studentquiz.singleQuizReport',compact('quizmarked','data'));
+        return view('quizizz.studentquiz.singleQuizReport',compact('quizmarked','data'));
     }
 
     public function QuizStatus($status)
