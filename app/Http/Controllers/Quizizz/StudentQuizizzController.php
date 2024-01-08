@@ -197,23 +197,24 @@ class StudentQuizizzController extends Controller
     {
         $quiz = Quizizz::where('id',$quizz_id)->first();
         $data = QuizStudentScore::with(['student', 'student_answers', 'quiz'])
-            ->selectRaw('
-                quiz_student_scores.*,
-                COUNT(quiz_questions.id) as totalquestion,
-                SUM(quiz_questions.points) as totalquizmarked,
-                SUM(quiz_student_answers.score) as studentscore,
-                SUM(CASE WHEN quiz_student_answers.score = 0 THEN 1 ELSE 0 END) as falsequestion,
-                SUM(CASE WHEN quiz_student_answers.score > 0 THEN 1 ELSE 0 END) as rightquestion
-            ')
-            ->join('quizizzes', 'quizizzes.id', '=', 'quiz_student_scores.quiz_id')
-            ->join('quiz_questions', 'quiz_questions.quiz_id', '=', 'quizizzes.id')
-            ->leftJoin('quiz_student_answers', function ($join) {
-                $join->on('quiz_student_answers.question_id', '=', 'quiz_questions.id')
-                    ->on('quiz_student_answers.student_id', '=', 'quiz_student_scores.student_id');
-            })
-            ->where('quiz_student_scores.quiz_id', $quizz_id)
-            ->groupBy('quiz_student_scores.id')
-            ->get(); 
+        ->selectRaw('
+            quiz_student_scores.*,
+            COUNT(quiz_questions.id) as totalquestion,
+            SUM(quiz_questions.points) as totalquizmarked,
+            SUM(quiz_student_answers.score) as studentscore,
+            SUM(CASE WHEN quiz_student_answers.score = 0 THEN 1 ELSE 0 END) as falsequestion,
+            SUM(CASE WHEN quiz_student_answers.score > 0 THEN 1 ELSE 0 END) as rightquestion
+        ')
+        ->join('quizizzes', 'quizizzes.id', '=', 'quiz_student_scores.quiz_id')
+        ->join('quiz_questions', 'quiz_questions.quiz_id', '=', 'quizizzes.id')
+        ->leftJoin('quiz_student_answers', function ($join) {
+            $join->on('quiz_student_answers.question_id', '=', 'quiz_questions.id')
+                ->on('quiz_student_answers.student_id', '=', 'quiz_student_scores.student_id');
+        })
+        ->where('quiz_student_scores.quiz_id', $quizz_id)
+        ->groupBy('quiz_student_scores.id', 'quiz_student_scores.student_id') // Include 'student_id' in the GROUP BY clause
+        ->get(); 
+    
         return view('Quizizz.Studentquiz.quizzReports',compact('quiz','data'));
     }
     
