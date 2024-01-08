@@ -162,18 +162,27 @@ class StudentQuizizzController extends Controller
                                 ->where('quiz_id', $quiz_id)
                                 ->where('student_id', $student_id)
                                 ->first();
-        // Sum of all scores
-        $studentscore = $quizmarked->student_answers->sum('score');
-        // Sum of scores where score is null
-        $falsequestion = $quizmarked->student_answers->whereNull('score')->sum('score');
-        // Sum of scores where score is not null
-        $rightquestion = $quizmarked->student_answers->whereNotNull('score')->sum('score');
+        if ($quizmarked !== null) {
+            // Sum of all scores
+            $studentscore = $quizmarked->student_answers->sum('score');
+            // Sum of scores where score is null
+            $falsequestion = $quizmarked->student_answers->whereNull('score')->sum('score');
+            // Sum of scores where score is not null
+            $rightquestion = $quizmarked->student_answers->whereNotNull('score')->sum('score');
+        }else{
+            // Sum of all scores
+            $studentscore = 0;
+            // Sum of scores where score is null
+            $falsequestion = 0;
+            // Sum of scores where score is not null
+            $rightquestion = 0;
+        }
         $data          = [      'totalquestion'   => $totalquestion,
-                                'totalquizmarked' => $totalquizmarked,
-                                'studentscore'    => $studentscore,
-                                'falsequestion'   => $falsequestion,
-                                'rightquestion'   => $rightquestion
-                         ];
+            'totalquizmarked' => $totalquizmarked,
+            'studentscore'    => $studentscore,
+            'falsequestion'   => $falsequestion,
+            'rightquestion'   => $rightquestion
+        ];
         return view('quizizz.studentquiz.singleQuizReport',compact('quizmarked','data'));
     }
 
