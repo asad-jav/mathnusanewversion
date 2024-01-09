@@ -170,7 +170,7 @@ class QuizizzController extends Controller
     {
         $quiz = Quizizz::find($id); 
         $questions = QuizQuestion::where('quiz_id',$id)->get();
-        $all_questions =  QuizQuestion::OrderBy('id','desc')->get();
+        $all_questions =  QuizQuestion::where('quiz_id','!=',$id)->OrderBy('id','desc')->get();
         return view('quizizz.quizizz_questions.index',compact('quiz','questions','all_questions'));
     }
 
