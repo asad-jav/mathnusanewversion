@@ -45,6 +45,10 @@
 			} */
 		}
 
+	a:hover {
+		color: #0056b3;
+		text-decoration: none;
+	} 
 	</style>
 @endsection
 
@@ -387,13 +391,14 @@
 										<div class="text-left p-relative z-index-3 py-5 px-4" >
 											<div class="card-group text-center mb-3">
 												@foreach ($grade->courses->where('end_date', '>', date('Y-m-d'))->where('status',App\Models\Course::ACTIVE)->take(4) as $course)
-													<div class="col-sm-6 col-md-3 bg-light p-0 mb-2 overflow-hidden grade" style="outline:1px solid #ededed">
+												
+												<div class="col-sm-6 col-md-3 bg-light p-0 mb-2 overflow-hidden grade" style="outline:1px solid #ededed">
+													<a href="{{ route('dashboard.course.sections', $course->id) }}" >
 														<img src="{{ asset('frontend/courses_images/'.$course->image) }}" class="card-img-top" alt="..." style="min-height:0px">
 														<div class="col-12">
 															<div class="card-body py-2 px-2 text-left">
-																<a href="{{ route('dashboard.course.sections', $course->id) }}" >
 																	<h5 class="card-title mb-0 txt-eclip">{{ $course->title }}</h5>
-																</a>
+															
 																<p class="mb-0"><strong>{{ $course->user->first_name }}</strong></p>
 																<h5 class="mb-0"><strong class="pr-2">2.5</strong>
 																	<i class="fas fa-star star-bg"></i>
@@ -431,6 +436,7 @@
 																</table>
 															</li>
 														</ul>
+													</a>
 													</div>
 												@endforeach
 											</div>

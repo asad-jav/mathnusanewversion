@@ -89,7 +89,12 @@ class QuizizzController extends Controller
     public function get_grade_courses(Request $request)
     {
         $id = $request->grade;
-        $courses = Course::where('grade_id',$id)->get();
+        if(Auth::check() && Auth::user()->isInstructor()) 
+        {
+            $courses = Auth::user()->courses; 
+        }else{
+            $courses = Course::where('grade_id',$id)->get();
+        }
         $standards = Standard::where('grade_id',$id)->get();
         
             return response()->json(['courses'=>$courses,'standards'=> $standards]);
@@ -151,6 +156,8 @@ class QuizizzController extends Controller
             { 
                 return back()->with(['status' => 'failure','message' => 'Quiz questions must be greater then 36 and each difficulty level must have 9 questions.']);
             }
+        }else{
+            $quiz->status = $request->status;
         }
 
         $quiz->title = $request->title;
