@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Course;
 use App\Models\Grade;
+use App\Models\Rating;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 class CourseController extends Controller
@@ -141,5 +142,23 @@ class CourseController extends Controller
         }
 
         return ['message' => 'success','data' => $list];
+    }
+
+    public function rateCourse(Request $request, $courseId)
+    {
+        $request->validate([
+            'rating' => 'required|numeric|min:1|max:5',
+            'comment' => 'nullable|string|max:255',
+        ]);
+
+        $rating = new Rating([
+            'course_id' => $courseId,
+            'user_id' => auth()->id(),
+            'rating' => $request->input('rating'),
+            'comment' => $request->input('comment'),
+        ]);
+        $rating->save();
+
+        return response()->json(['success' => 'Rating and comment submitted successfully']);
     }
 }

@@ -150,4 +150,21 @@ class Course extends Model
         $thumbnail->fit(300, 200);
         $thumbnail->save(public_path('courses_images/'.$filename));
     }
+
+    public function ratings()
+    {
+        return $this->hasMany(Rating::class); // Assuming you have a Rating model
+    }
+
+    public function averageRating()
+    {
+        $ratings = $this->ratings;
+
+        if ($ratings->count() > 0) {
+            $totalRating = $ratings->sum('rating');
+            return round($totalRating / $ratings->count(), 1);
+        }
+
+        return 0;
+    }
 }

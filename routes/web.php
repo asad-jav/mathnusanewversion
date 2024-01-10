@@ -61,6 +61,8 @@ Route::prefix('dashboard')->group(function () {
     Route::post('fetch/course/sections', [CourseController::class, 'fetchCourseSections'])->name('fetch.course.sections');
     Route::get('fetch/course/sections/{id}', [CourseController::class, 'fetchCourseSectionsForInstructor'])->name('fetch.course.sections.for.instructor');
     Route::get('course/sections/{id}', [SectionController::class, 'courseSections'])->name('dashboard.course.sections');
+    Route::post('/rate/course/{course}', [CourseController::class, 'rateCourse'])->name('rate.course');
+
 });
 
 
