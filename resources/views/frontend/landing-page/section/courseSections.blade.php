@@ -197,7 +197,7 @@
                                 <tr>
                                     <th>Average Rating:</th>
                                     <td>
-                                    {{ $course->ratings->avg('rating') }}/5
+                                    {{ $course->ratings->avg('rating') ?? 0 }}/5
                                     </td>
                                 </tr>
                             </table>
