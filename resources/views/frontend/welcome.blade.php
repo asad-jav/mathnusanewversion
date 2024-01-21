@@ -402,7 +402,7 @@
 
 					<div class="col-sm-6 col-md-3 bg-light p-0 mb-2 overflow-hidden grade" style="outline:1px solid #ededed">
 						<a href="{{ route('dashboard.course.sections', $course->id) }}">
-							<img src="{{ asset('frontend/courses_images/'.$course->image) }}" class="card-img-top" alt="..." style="min-height:0px">
+							<img src="{{ asset('courses_images/'.$course->image) }}" class="card-img-top" alt="..." style="min-height:0px">
 							<div class="col-12">
 								<div class="card-body py-2 px-2 text-left">
 									<h5 class="card-title mb-0 txt-eclip">{{ $course->title }}</h5>

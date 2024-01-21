@@ -388,7 +388,7 @@
 											<div class="card-group text-center mb-3">
 												@foreach ($grade->courses->where('end_date', '>', date('Y-m-d'))->where('status',App\Models\Course::ACTIVE)->take(4) as $course)
 													<div class="col-sm-6 col-md-3 bg-light p-0 mb-2 overflow-hidden grade" style="outline:1px solid #ededed">
-														<img src="{{ asset('public/courses_images/'.$course->image) }}" class="card-img-top" alt="..." style="min-height:0px">
+														<img src="{{ asset('courses_images/'.$course->image) }}" class="card-img-top" alt="..." style="min-height:0px">
 														<div class="col-12">
 															<div class="card-body py-2 px-2 text-left">
 																<a href="{{ route('dashboard.course.sections', $course->id) }}" >

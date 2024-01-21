@@ -200,8 +200,8 @@
                                     {{ $course->ratings->avg('rating') ?? 0 }}/5
                                     </td>
                                 </tr>
-                            </table>
-                            <p class="mt-4">{{$lecture->outline}}</p>
+                            </table> 
+                            <p class="mt-4"><?php echo $course->course_outline ?></p>
                             @if (!$loop->last)
                             <hr style="wbackground:#e41645">
                             @endif

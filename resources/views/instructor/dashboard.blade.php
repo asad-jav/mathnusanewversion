@@ -175,7 +175,7 @@
                                                         {{$enrolled_section->course->title}} ({{ $enrolled_section->name }})
 
                                                     </h4>
-                                                    <p class="card-text">{{$enrolled_section->course->course_outline}}</p>
+                                                    <!-- <p class="card-text"><?php echo $enrolled_section->course->course_outline?></p> -->
                                                     <p class="card-text">
                                                         <small class="text-muted">{{App\Models\User::getCurrentDateDifference($enrolled_section->pivot->created_at)}}</small>
                                                     </p>

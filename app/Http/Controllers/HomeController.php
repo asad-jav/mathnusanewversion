@@ -16,7 +16,7 @@ class HomeController extends Controller
     public function landingPage()
     {
         $data['grades'] = Grade::allGrades();
-        $data['packages'] = Package::allPackages();
+        $data['packages'] = Package::allPackages(); 
         return view('frontend.welcome', $data);
     }
 

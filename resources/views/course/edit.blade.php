@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 @section('title', 'Edit Course')
 @section('css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote.min.css" integrity="sha512-m52YCZLrqQpQ+k+84rmWjrrkXAUrpl3HK0IO4/naRwp58pyr7rf5PO1DbI2/aFYwyeIH/8teS9HbLxVyGqDv/A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 @endsection
 @section('content')
 
@@ -103,7 +104,7 @@
                         </div>
                         <div class="form-group">
                             <label for="">Course Outline</label> 
-                            <textarea name="course_outline" id="" class="form-control" placeholder="Outline" cols="30" rows="10">{{ $course->course_outline }}</textarea>
+                            <textarea name="course_outline" id="" class="form-control summernote" placeholder="Outline" cols="30" rows="10">{{ $course->course_outline }}</textarea>
                             @error('course_outline')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -127,6 +128,12 @@
 
 @endsection
 @section('script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote.min.js" integrity="sha512-6rE6Bx6fCBpRXG/FWpQmvguMWDLWMQjPycXMr35Zx/HRD9nwySZswkkLksgyQcvrpYMx0FELLJVBvWFtubZhDQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+$(document).ready(function() {
+    $('.summernote').summernote();
+});
+</script>
 <script>
     @if($course->grade->id)
         $('#grade').val('{{ $course->grade->id }}');
