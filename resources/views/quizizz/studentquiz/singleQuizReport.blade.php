@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Quizizz Report') 
+@section('title', 'CFU Report') 
 @section('content')
 
 <div class="app-content content pt-2 pb-2">
@@ -14,7 +14,7 @@
             {{ Session::get('failure') }}
         </div>
         @endif
-        <h1>Quizizz Report 
+        <h1>CFU Report 
             @if(auth()->user()->isStudent())
             <a href="{{url('student/quiz/complete-quizz')}}" class="btn btn-danger" style="float:right"><i class="ft-arrow-left"></i>Back</a> 
             @else
@@ -52,6 +52,7 @@
                                             <th  class="text-center">Total Passing Marks</th>
                                             <th  class="text-center">Student Marks</th>
                                             <th  class="text-center"> Status </th>
+                                            <th  class="text-center"> View </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -66,6 +67,9 @@
                                                 @else
                                                     <span class="badge badge-danger">Failed</span>
                                                 @endif
+                                            </td>
+                                            <td class="text-center"> 
+                                                <a href="{{url('view/student/cuf/details',$quizmarked->id)}}">Detail</a>
                                             </td>
                                         </tr>
                                     </tbody>

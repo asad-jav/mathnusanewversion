@@ -46,7 +46,7 @@
                 <li class="nav-item  {{ Request::is('quizizz')  || Route::is('quizz/reports/view/*')   || Request::is('student/quizz/report/*/*')  ||  Request::is('student/quizizz/answers/*/*') || Request::is('student/quizizz/view/*') || Request::is('quizizz/create') || Request::is('quizz-question/create/*') || Request('quizizz/*') || Request::is('quizizz/*/edit')  ? 'active' : ''}}">
                     <a href="{{ url('quizizz') }}">
                         <i class="ft-book"></i>
-                        <span class="menu-title" data-i18n="">Quizziz </span>
+                        <span class="menu-title" data-i18n="">CFU </span>
                     </a>
                 </li> 
                 <li class=" nav-item">

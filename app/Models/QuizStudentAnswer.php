@@ -16,7 +16,8 @@ class QuizStudentAnswer extends Model
         'question_type',
         'student_answer',
         'status',
-        'score'
+        'score',
+        'feedback'
     ];
 
     public function question(){

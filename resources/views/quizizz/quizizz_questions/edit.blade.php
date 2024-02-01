@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Edit Quiz Question')
+@section('title', 'Edit CFU Question')
 @section('css')
 <style>
     .btn-primary {
@@ -88,7 +88,7 @@
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">
-                    Create New Quiz Question 
+                    Create New CFU Question 
                 </h4>
             </div>
             <div class="card-body">

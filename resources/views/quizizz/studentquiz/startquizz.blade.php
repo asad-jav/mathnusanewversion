@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'All Quizizz')
+@section('title', 'All CFU')
 @section('css')
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>

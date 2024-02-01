@@ -300,6 +300,7 @@ Route::prefix('student')->middleware(['auth', 'verified'])->group(function () {
     Route::get('quizizz/report/{id}', [StudentQuizizzController::class, 'quizzReport']);
     Route::get('quiz/{status}', [StudentQuizizzController::class, 'QuizStatus']);
 });
+Route::get('view/student/cuf/details/{score_id}',[StudentQuizizzController::class,'CufAnswerDetails']);
 Route::get('getip/{ip?}', function ($ip = null) {
     $ip = App\Libraries\Http::ipInfo($ip);
     return $ip;

@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'All Quizizz')
+@section('title', 'All CFU')
 @section('css')
 <link rel="stylesheet" href="{{asset('public/assets/font-awesome.min.css')}}">
 <style>
@@ -87,7 +87,7 @@
             {{ Session::get('failure') }}
         </div>
         @endif
-        <h1> {{$title ?? 'ALL Quizizz'}} </h1>
+        <h1> {{$title ?? 'ALL CFU'}} </h1>
         <div class="row mt-4">
             @if(count($quizizzes) > 0)
             @foreach($quizizzes as $quiz)

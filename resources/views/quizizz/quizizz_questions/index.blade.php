@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'All Quizizz Question')
+@section('title', 'All CFU Question')
 @section('css')
 <style>
     .right {
@@ -37,7 +37,7 @@
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">
-                    <span class="">All Quizizzes Quesiton</span>
+                    <span class="">All CFU Quesiton</span>
                 </h4>
                 <p class="mt-2">
                     <span class="">Total Questions : {{$quiz->total_questions}}</span>

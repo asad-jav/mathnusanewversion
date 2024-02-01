@@ -101,7 +101,7 @@ class StudentQuizizzController extends Controller
     }
 
     public function quizzReport($quiz_id)
-    {
+    { 
         $student_id = Auth::user()->id;
         $totalquestion         = QuizQuestion::where('quiz_id',$quiz_id)->count();
         $totalquizmarked       = QuizQuestion::where('quiz_id',$quiz_id)->sum('points');
@@ -129,16 +129,16 @@ class StudentQuizizzController extends Controller
         $courses = Auth::user()->courses;
         $subcorses = $courses->pluck('id')->toArray();
         if ($status == 'live-quizz') {
-            $title = "Live Quizz";
+            $title = "Live CFU";
             $quizizzes = Quizizz::with(['totalquestions', 'course'])->where('status', 1)->whereIn('course_id', $subcorses)->orderby('created_at', 'desc')->get();
 
             return view('quizizz.studentquiz.index', compact('quizizzes', 'title'));
         } else if ($status == 'complete-quizz') {
-            $title = "Complete Quizz";
+            $title = "Complete CFU";
             $quizizzes = QuizStudentScore::with('quiz')->where('student_id', Auth::user()->id)->get();
             return view('quizizz.studentquiz.completeQuiz', compact('quizizzes', 'title'));
         } else {
-            $title = "UpComing Quizz";
+            $title = "UpComing CFU";
             $quizizzes = Quizizz::with(['totalquestions', 'course'])->where('status', 0)->whereIn('course_id', $subcorses)->orderby('created_at', 'desc')->get();
         }
         return view('quizizz.studentquiz.index', compact('quizizzes', 'title'));
@@ -149,13 +149,14 @@ class StudentQuizizzController extends Controller
         $quizmarked = QuizStudentAnswer::where('id', $request->student_answer_id)->first();
         $quizmarked->status = 1;
         $quizmarked->score  = $request->student_points;
+        $quizmarked->feedback  = $request->feedback;
         $quizmarked->update();
         return back()->with('success', __('Student Quiz marked successfuly'));
     }
 
 
     public function studentQuizReport($quiz_id, $student_id)
-    {
+    {  
         $totalquestion         = QuizQuestion::where('quiz_id',$quiz_id)->count();
         $totalquizmarked       = QuizQuestion::where('quiz_id',$quiz_id)->sum('points');
         $quizmarked            = QuizStudentScore::with('student','student_answers','quiz')
@@ -195,10 +196,10 @@ class StudentQuizizzController extends Controller
                 $quizz->report_status = 0;
             } 
             $quizz->update(); 
-            return back()->with('success', __('Quizz report'.$status.' successfully'));
+            return back()->with('success', __('CFU report'.$status.' successfully'));
 
         }else{
-            return back()->with('failure', __("Quizz report can't live until quizz status completed"));
+            return back()->with('failure', __("CFU report can't live until cfu status completed"));
         }
     }
 
@@ -233,6 +234,10 @@ class StudentQuizizzController extends Controller
         return view('quizizz.studentquiz.quizzReports',compact('quiz','data'));
     }
     
-
+    public function CufAnswerDetails($score_id){
+        
+        $cuf_answers = QuizStudentScore::with('student','student_answers','quiz')->where('id',$score_id)->first();
+        return view('quizizz.studentquiz.cufReportsDetails',compact('cuf_answers'));
+    }
     
 }

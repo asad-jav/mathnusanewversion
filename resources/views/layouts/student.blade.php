@@ -22,16 +22,16 @@
 <body class="vertical-layout vertical-menu 2-columns  fixed-navbar" data-open="click" data-menu="vertical-menu" data-color="bg-gradient-x-purple-blue" data-col="2-columns">
     
     @include('shared.header')
-    @can('student')
-        @include('shared.student-sidebar')
-    @endcan
-    @can('teacher')
-        @include('shared.instructor-sidebar')
-    @endcan
-    @can('admin')
+    @if(Auth::user()->role_id == 1)
         @include('shared.admin-sidebar')
-    @endcan
-    
+    @endif
+    @if(Auth::user()->role_id == 2)
+        @include('shared.student-sidebar')
+    @endif
+    @if(Auth::user()->role_id == 3)
+        @include('shared.instructor-sidebar')
+    @endif
+   
     @yield('content')
     {{-- @include('shared.footer') --}}
     @include('shared.js')

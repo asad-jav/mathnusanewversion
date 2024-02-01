@@ -20,11 +20,11 @@ class QuizController extends Controller
             if(count($quizizz) > 0)
             {
                 
-                return $this->sendResponse(['quiz' => $quizizz], 'Quiz Found');  
+                return $this->sendResponse(['quiz' => $quizizz], 'CFU Found');  
             }
             else
             { 
-                return $this->sendError("Quiz Not Found",[],404); 
+                return $this->sendError("CFU Not Found",[],404); 
             }
         }
         else 
@@ -38,7 +38,7 @@ class QuizController extends Controller
     public function show_quiz_question(Request $request)
     {
         if(!$request->quiz_id){  
-            return $this->sendError("Quiz questions does not exist.",[],404);  
+            return $this->sendError("CFU questions does not exist.",[],404);  
         }
         $quiz_id        = $request->quiz_id;
         $passing_points = Quizizz::where('id',$quiz_id)->pluck('passing_marks')->first();
@@ -64,10 +64,10 @@ class QuizController extends Controller
         
         if (count($response) > 0) {
             
-            return $this->sendResponse(['Quiz_points' => $quizizz_points,'passing_marks' => $passing_points ,'quiz_questions' => $response], 'Quiz Questions Found');   
+            return $this->sendResponse(['Quiz_points' => $quizizz_points,'passing_marks' => $passing_points ,'quiz_questions' => $response], 'CFU  Questions Found');   
         } else {
             
-            return $this->sendError("Quiz Question Not Found",[],404);  
+            return $this->sendError("CFU Question Not Found",[],404);  
         }
         
     }

@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Students Quizizz')
+@section('title', 'Students CFU')
 @section('css')
 <style>
     .right {
@@ -43,10 +43,10 @@
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">
-                    <span class="">All Student Quizizz</span>
+                    <span class="">All Student CFU</span>
                 </h4>
                 <p class="mt-2">
-                    <span class="">Quiz Name : {{$quiz->title ?? ''}}</span>
+                    <span class="">CFU Name : {{$quiz->title ?? ''}}</span>
                 </p>
                 <div class="heading-elements">
                     <ul class="list-inline mb-0">

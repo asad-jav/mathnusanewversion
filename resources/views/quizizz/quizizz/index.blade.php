@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'All Quizizz')
+@section('title', 'All CFU')
 @section('css')
 <style>
     .right {
@@ -35,11 +35,11 @@
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">
-                    <span class="">All Quizizzes</span>
+                    <span class="">All CFU</span>
                 </h4>
                 <div class="heading-elements">
                     <ul class="list-inline mb-0">
-                        <a href="{{route('quizizz.create')}}" class="btn btn-primary"><i class="ft-plus"></i> Create Quizizz</a>
+                        <a href="{{route('quizizz.create')}}" class="btn btn-primary"><i class="ft-plus"></i> Create CFU</a>
                     </ul>
                 </div>
             </div>
@@ -129,13 +129,13 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="timer" class="control-label">Quiz Start Date </label>
+                                <label for="timer" class="control-label">CFU Start Date </label>
                                 <input type="date" class="form-control" id="start-date" name="start_date">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="timer" class="control-label">Quiz End Date </label>
+                                <label for="timer" class="control-label">CFU End Date </label>
                                 <input type="date" class="form-control" id="end-date" name="end_date">
                             </div>
                         </div>

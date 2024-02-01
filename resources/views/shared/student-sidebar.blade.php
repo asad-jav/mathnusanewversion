@@ -40,14 +40,14 @@
                 <li class="nav-item {{ Request::is('student/quizizz') || Request::is('student/quiz/live-quizz') || Request::is('student/quiz/complete-quizz') ? 'active' : ''}}">
                     <a href="#">
                         <i class="ft-book"></i>
-                        <span class="menu-title" data-i18n="">Quizziz</span>
+                        <span class="menu-title" data-i18n="">CFU</span>
                     </a>
                     <ul class="menu-content">
                         <li class="{{ Request::is('student/quiz/live-quizz') ? 'active' : ''}}">
-                            <a class="menu-item" href="{{ url('student/quiz/live-quizz') }}">Live Quizz</a>
+                            <a class="menu-item" href="{{ url('student/quiz/live-quizz') }}">Live CFU</a>
                         </li> 
                         <li class="{{ Request::is('student/quiz/complete-quizz') ? 'active' : ''}}">
-                            <a class="menu-item" href="{{ url('student/quiz/complete-quizz') }}">Complete Quizz</a>
+                            <a class="menu-item" href="{{ url('student/quiz/complete-quizz') }}">Complete CFU</a>
                         </li>  
                     </ul>
                 </li>

@@ -74,7 +74,7 @@ class QuizizzQuestionController extends Controller
         {
             return back()->with('error','Something went wrong!');
         }
-        return redirect('quizizz/'.$request->quiz_id)->with('success', __('QuizQuestion created successfully')); 
+        return redirect('quizizz/'.$request->quiz_id)->with('success', __('CFU Question created successfully')); 
     }
 
     
@@ -119,7 +119,7 @@ class QuizizzQuestionController extends Controller
             'choices'       => $choices ?? '',
             'difficulty_level' => $request->difficulty_level,
         ]); 
-        return redirect('quizizz/'.$request->quiz_id)->with('success', __('QuizQuestion updated successfully')); 
+        return redirect('quizizz/'.$request->quiz_id)->with('success', __('CFU Question updated successfully')); 
     }
 
     public function destroy($id){
@@ -144,6 +144,6 @@ class QuizizzQuestionController extends Controller
             File::delete($question->image_link);
         }
         $question->delete();
-        return redirect('quizizz/'.$quiz_id)->with('success', __('QuizQuestion deleted successfully')); 
+        return redirect('quizizz/'.$quiz_id)->with('success', __('CFU Question deleted successfully')); 
     }
 }

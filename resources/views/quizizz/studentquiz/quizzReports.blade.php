@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Quizizz Report') 
+@section('title', 'CFU Report') 
 @section('content')
 
 <div class="app-content content pt-2 pb-2">
@@ -14,7 +14,7 @@
             {{ Session::get('failure') }}
         </div>
         @endif
-        <h1>Quizizz Report 
+        <h1>CFU Report 
             <a href="{{url('student/quizizz/view',$quiz->id)}}" class="btn btn-danger" style="float:right"><i class="ft-arrow-left"></i>Back</a> 
         </h1>
         

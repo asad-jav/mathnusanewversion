@@ -15,12 +15,13 @@ return new class extends Migration
             $table->id();
             $table->integer('student_id')->nullable();
             $table->integer('quiz_student_score_id')->nullable();
-            $table->integer('quiz_id')->nullable();
-            $table->integer('question_id')->nullable();
             $table->integer('question_type')->nullable();
-            $table->string('student_answer')->nullable();
             $table->integer('status')->nullable();
             $table->integer('score')->nullable();
+            $table->longText('feedback')->nullable();
+            $table->integer('quiz_id')->nullable();
+            $table->integer('question_id')->nullable();
+            $table->string('student_answer')->nullable();
             $table->timestamps();
         });
     }

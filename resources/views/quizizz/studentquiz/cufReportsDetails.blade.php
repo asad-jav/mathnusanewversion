@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Students CFU')
+@section('title', 'Students CFU Answers')
 @section('css')
 <style>
     .right {
@@ -36,14 +36,14 @@
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">
-                    <span class="">{{$quizizz->student->first_name ?? ''}} {{$quizizz->student->last_name ?? ''}} Quizizz answers</span>
+                    <span class="">{{$cuf_answers->student->first_name ?? ''}} {{$cuf_answers->student->last_name ?? ''}} Quizizz answers</span>
                 </h4>
                 <p class="mt-2">
-                    <span class="">CFU Name : {{$quizizz->quiz->title ?? ''}}</span>
+                    <span class="">CFU Name : {{$cuf_answers->quiz->title ?? ''}}</span>
                 </p>
                 <div class="heading-elements">
                     <ul class="list-inline mb-0">
-                        <a href="{{url('student/quizizz/view',$quizizz->id)}}" class="btn btn-danger"><i class="ft-arrow-left"></i>Back</a>
+                        <a href="{{url('student/quizizz/report',$cuf_answers->quiz->id)}}" class="btn btn-danger"><i class="ft-arrow-left"></i>Back</a>
                     </ul>
                 </div>
             </div>
@@ -71,13 +71,13 @@
                                     <th>Student Answer</th>
                                     <th>Question Points</th>
                                     <th>Obtained Points</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
+                                    <th>Status</th> 
+                                    <th>Feedback</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @if(count($answers) > 0)
-                                @foreach($answers as $key => $quiziz)
+                                @if(count($cuf_answers->student_answers) > 0)
+                                @foreach($cuf_answers->student_answers as $key => $quiziz)
                                 <tr>
                                     <td>{{++$key}}</td>
                                     <td>{!! $quiziz->question->question ?? '' !!}</td>
@@ -128,13 +128,9 @@
                                     </td>
                                     <td class="text-center">
 
-                                        @if($quiziz->question->question_type == 1 && $quiziz->status == 0)
-                                        <div class="btn-group" role="group" aria-label="Basic example">
-                                            @php
-                                                        $url = url('quiz/question/student/answer');
-                                            @endphp
-                                            <a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="editStudenQuiz('{{$quiziz->question->question}}','{{$quiziz->student_answer}}','{{$quiziz->question->points}}','{{$url}}','{{$quiziz->id}}')" title="Marke students Points" data-toggle="tooltip"><i class="ft-edit"></i></a>
-                                        </div>
+                                        @if($quiziz->feedback)
+                                        <a  href="javascript:void(0)" onclick="editStudenQuiz('{{$quiziz->feedback}}')" title="Feedback" data-toggle="tooltip">Feedback</a>
+                                      
                                         @endif
                                     </td>
 
@@ -156,7 +152,7 @@
     </div>
 </div>
 <div class="modal fade" id="answertool" aria-hidden="true">
-    <div class="modal-dialog modal-md" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Mark the answer points</h5>
@@ -179,33 +175,13 @@
 <script type="text/javascript">
    
 
-    function editStudenQuiz(question,student_answer,points,url,quiz_answer_id){
-        // var quizz = JSON.parse();
-        console.log();
+    function editStudenQuiz(cuf){
+        // var quizz = JSON.parse(cuf);
+        console.log(cuf);
         $("#editmark").html('');
-        $("#editmark").append('<form id="myForm" action="'+url+'" method="post">@csrf\
-                            <input type="hidden" name="student_answer_id" value="'+quiz_answer_id+'">\
-                        <div class="form-group">\
-                            <label>Question: </label>'+question+'\
-                        </div>\
-                        <div class="form-group">\
-                            <label>Student Answer: </label><textarea class="form-control" disabled>'+student_answer+'</textarea>\
-                        </div>\
-                        <div class="form-group">\
-                            <label>Question Points: </label><input type="number" class="form-control" value="'+points+'" disabled>\
-                        </div>\
-                        <div class="form-group">\
-                            <label>Mark Points: </label>\
-                            <input type="number" class="form-control" name="student_points" min="0" max="'+points+'" required>\
-                        </div>\
-                        <div class="form-group">\
-                            <label>Feedback: </label>\
-                            <textarea type="text" class="form-control summernote" name="feedback"></textarea>\
-                        </div>\
-                        <button type="submit" class="btn btn-primary">Submit</button>\
-                    </form>');
-                    
-                        $('.summernote').summernote();
+        $("#editmark").append('<div class="form-group">\
+                            <label>Instructor Feedback: </label><br><div class="container">'+cuf+'</div>\
+                        </div>');
                     $('#answertool').modal('show');
 
     }  

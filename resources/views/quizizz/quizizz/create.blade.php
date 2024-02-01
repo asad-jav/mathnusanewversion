@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Create New Quizizz')
+@section('title', 'Create New CFU')
 @section('css')
 <style>
     .right {
@@ -24,7 +24,7 @@
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">
-                    <span class="">Create New Quizizz</span>
+                    <span class="">Create New CFU</span>
                 </h4>
             </div>
             <div class="card-content collapse show">
@@ -96,7 +96,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="timer" class="control-label">Quiz Start Date </label>
+                                    <label for="timer" class="control-label">CFU Start Date </label>
                                     <input type="date" class="form-control" id="start-date" name="start_date" value="{{old('start_date')}}">
                                     @error('start_date')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -105,7 +105,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="timer" class="control-label">Quiz End Date </label>
+                                    <label for="timer" class="control-label">CFU End Date </label>
                                     <input type="date" class="form-control" id="end-date" name="end_date" value="{{old('end_date')}}">
                                     @error('end_date')
                                     <div class="invalid-feedback">{{ $message }}</div>
