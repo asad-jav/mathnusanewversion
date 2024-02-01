@@ -15,6 +15,9 @@
         background-color: #fee0e19c !important;
         border-color: #fed3d6 !important;
     }
+    .modal{
+        overflow: scroll;
+    }
 </style>
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 @endsection
