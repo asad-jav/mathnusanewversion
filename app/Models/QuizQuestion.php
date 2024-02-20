@@ -10,6 +10,6 @@ class QuizQuestion extends Model
     use HasFactory;
     protected $table = 'quiz_questions';
     protected $guarded = [];
-    protected $fillable = ['quiz_id','question','question_type','image_link','video_link','answer','points','choices'];
+    protected $fillable = ['quiz_id','question','question_type','difficulty_level','image_link','video_link','answer','points','choices'];
 
 }

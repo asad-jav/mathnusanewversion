@@ -16,7 +16,9 @@ class QuizController extends Controller
         $user = Auth::user();
         if($user)
         {
-            $quizizz = Quizizz::where('status',1)->OrderBy('id','desc')->get();
+            $courses    = Auth::user()->courses;  
+            $subcorses  = $courses->pluck('id')->toArray(); 
+            $quizizz    = Quizizz::where('status',1)->whereIn('course_id',$subcorses)->get();  
             if(count($quizizz) > 0)
             {
                 
@@ -61,7 +63,7 @@ class QuizController extends Controller
                 $response['difficulty_levels'][$difficultyName] = $questions;
             }
         }
-        
+         
         if (count($response) > 0) {
             
             return $this->sendResponse(['Quiz_points' => $quizizz_points,'passing_marks' => $passing_points ,'quiz_questions' => $response], 'CFU  Questions Found');   

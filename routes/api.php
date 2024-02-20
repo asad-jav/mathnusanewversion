@@ -22,8 +22,8 @@ Route::post('/login', [LoginController::class,'login']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/auth/user/profile',[ProfileController::class,'user_profile']);
     Route::post('/auth/update/password',[ProfileController::class,'update_password']);
-    Route::get('/auth/quiz/',[QuizController::class,'show_quiz']);
-    Route::post('/auth/quiz/questions',[QuizController::class,'show_quiz_question']);
+    Route::get('/auth/cfu',[QuizController::class,'show_quiz']);
+    Route::post('/auth/cfu/questions',[QuizController::class,'show_quiz_question']);
 });
 
 
