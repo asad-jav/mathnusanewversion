@@ -86,6 +86,7 @@ class QuizController extends Controller
         if($user)
         {  
             $status = 0;
+            $score = 0;
             $answer = $request->answer;
             $student_id = $user->id;
             $score_id = QuizStudentScore::create([
