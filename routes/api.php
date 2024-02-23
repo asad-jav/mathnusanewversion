@@ -24,6 +24,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/auth/update/password',[ProfileController::class,'update_password']);
     Route::get('/auth/cfu',[QuizController::class,'show_quiz']);
     Route::post('/auth/cfu/questions',[QuizController::class,'show_quiz_question']);
+    Route::post('/auth/cfu/question/answer',[QuizController::class,'cfuQuestionAnswer']);
 });
 
 

@@ -28,4 +28,13 @@ class Quizizz extends Model
     public function totalquestions(){ 
         return $this->hasMany(QuizQuestion::class,'quiz_id');
     }
+    public function grade()
+    {
+        return $this->belongsTo(Grade::class);
+    }
+    public function quizQuestions()
+    {
+        return $this->hasMany(QuizQuestion::class, 'quiz_id', 'id');
+    }
+
 }

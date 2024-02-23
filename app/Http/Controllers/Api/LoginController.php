@@ -23,7 +23,7 @@ class LoginController extends Controller
             return response()->json($validator->errors(),400);
         }
 
-        $user = User::where('email',$request->email)->first();
+        $user = User::with('grade')->where('email',$request->email)->first();
         if($user && Hash::check($request->password,$user->password))
         {
             $token = $user->createToken('Personal Access Token')->plainTextToken;
