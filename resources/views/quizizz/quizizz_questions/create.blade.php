@@ -71,6 +71,8 @@
 </style>
 <link href="{{asset('backend/css/lib/mathquill.css')}}" rel="stylesheet">
 <link href="{{asset('backend/css/lib/matheditor.css')}}" rel="stylesheet">
+<!-- include summernote css/js -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 @endsection
 @section('content')
 
@@ -129,7 +131,7 @@
                                         <i class="ft-target"></i> Question
                                     </h4>
                                     <div class="form-group">
-                                        <textarea class="form-control @error('quesiton') is-invalid @enderror tinymce-editor round" rows="5" type="text" name="quesiton" placeholder="Enter Question" id="question" required>{{old('question')}}</textarea>
+                                        <textarea class="form-control @error('quesiton') is-invalid @enderror summernote round" rows="5" type="text" name="quesiton" placeholder="Enter Question" id="question" required>{{old('question')}}</textarea>
                                         @error('quesiton')
                                             <span class="text-danger" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -290,7 +292,13 @@
 
 @endsection
 @section('script')
-<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.summernote').summernote();
+    });
+</script>
+<!-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
 <script type="text/javascript"> 
     tinymce.init({
@@ -313,7 +321,7 @@
             'removeformat',
         content_css: "{{url('backend/assets/codepen.min.css')}}"
     });
-</script>
+</script> -->
 <script>
     $(document).ready(function() {
 
