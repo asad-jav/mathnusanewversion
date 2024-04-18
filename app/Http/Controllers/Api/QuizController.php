@@ -52,7 +52,7 @@ class QuizController extends Controller
         $quiz_id        = $request->quiz_id;
         $passing_points = Quizizz::where('id',$quiz_id)->pluck('passing_marks')->first();
         $quizizz_points = QuizQuestion::where('quiz_id',$quiz_id)->sum('points');
-        $quizizz = QuizQuestion::where('quiz_id', $quiz_id)->get();
+        $quizizz        = QuizQuestion::where('quiz_id', $quiz_id)->get();
         // Define an array of difficulty levels
         $difficultyLevels = [
             '1' => 'easy',
@@ -62,22 +62,32 @@ class QuizController extends Controller
         ];
         // Initialize an empty array for the response
         $response = [];
+
+        // Loop through all difficulty levels
         foreach ($difficultyLevels as $difficultyId => $difficultyName) {
-            $questions = $quizizz->where('difficulty_level', $difficultyId);
+            // Initialize an empty array for questions of this difficulty level
+            $response['difficulty_levels'][$difficultyName] = [];
         
-            // Check if there are questions for this difficulty level
-            if ($questions->isNotEmpty()) {
-                $response['difficulty_levels'][$difficultyName] = $questions;
+            // Get questions for this difficulty level
+            $questions = $quizizz->where('difficulty_level', $difficultyId);
+            
+            // Add questions to the response array
+            foreach ($questions as $question) {
+                $response['difficulty_levels'][$difficultyName][] = $question;
             }
         }
-         
-        if (count($response) > 0) {
-            
-            return $this->sendResponse(['Quiz_points' => $quizizz_points,'passing_marks' => $passing_points ,'quiz_questions' => $response], 'CFU  Questions Found');   
-        } else {
-            
-            return $this->sendError("CFU Question Not Found",[],404);  
+        
+        // Check if any questions are found
+        if (empty($response['difficulty_levels'])) {
+            return $this->sendError("CFU Question Not Found", [], 404);
         }
+        
+        return $this->sendResponse([
+            'Quiz_points' => $quizizz_points,
+            'passing_marks' => $passing_points,
+            'quiz_questions' => $response
+        ], 'CFU Questions Found');
+        
         
     }
 
