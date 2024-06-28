@@ -25,6 +25,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/auth/cfu',[QuizController::class,'show_quiz']);
     Route::post('/auth/cfu/questions',[QuizController::class,'show_quiz_question']);
     Route::post('/auth/cfu/question/answer',[QuizController::class,'cfuQuestionAnswer']);
+    Route::post('/auth/cfu/student/report',[QuizController::class,'studentCfuReport']);
+    Route::post('auth/cfu/leadboard',[QuizController::class,'cfuLeaderBoard']);
+    Route::post('auth/cfu/student/kills',[QuizController::class,'cfuStudentKills']);
+    Route::post('auth/cfu/student/add/kills',[QuizController::class,'cfuAddStudentKills']);
+    //kills leader board
+    Route::post('auth/cuf/kills/leaderboard',[QuizController::class,'cfuKillsleaderBoard']);
 });
 
 

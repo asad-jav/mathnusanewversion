@@ -95,8 +95,7 @@ class QuizizzController extends Controller
         }else{
             $courses = Course::where('grade_id',$id)->get();
         }
-        $standards = Standard::where('grade_id',$id)->get();
-        
+        $standards = Standard::where('grade_id',$id)->get(); 
             return response()->json(['courses'=>$courses,'standards'=> $standards]);
        
     }
@@ -184,8 +183,12 @@ class QuizizzController extends Controller
     public function edit($id){
         $quiz = Quizizz::find($id);
         $grades = Grade::all();
-        
-        $courses = Course::where('grade_id',$quiz->grade_id)->get();
+         if(Auth::check() && Auth::user()->isInstructor()) 
+        {
+            $courses = Auth::user()->courses; 
+        }else{
+            $courses = Course::where('grade_id',$quiz->grade_id)->get();
+        }  
         $standards = Standard::where('grade_id',$quiz->grade_id)->get();
         return view('quizizz.quizizz.edit',compact('grades','quiz','courses','standards'));
     }

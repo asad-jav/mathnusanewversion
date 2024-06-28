@@ -156,7 +156,8 @@ class InstructorController extends Controller
 
     public function assignCoursesForm(Request $req)
     {
-        $data['user'] = User::find($req->user_id);
+        $data['user'] = User::find($req->user_id); 
+        $data['courses'] = Course::allCourses();
         return view('instructor.assignCourses', $data);
     }
 

@@ -1,0 +1,1 @@
+<img src="{{ asset($data->thumbnail) }}" data-original = "{{ asset($data->file) }}" alt="" class="thumbnail img-rounded" data-toggle="modal" data-target="#image-preview">

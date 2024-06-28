@@ -39,7 +39,7 @@ class QuizizzQuestionController extends Controller
             $random_string = time(); 
             $image = Image::make($request->file('image'));
             $image->resize(300, 300);
-            $image->save('./public/questionImage/'.$random_string.'.jpg'); 
+            $image->save('questionImage/'.$random_string.'.jpg'); 
             $image_url = 'public/questionImage/'.$random_string.'.jpg';
         }
 
@@ -105,7 +105,7 @@ class QuizizzQuestionController extends Controller
             $random_string = time(); 
             $image = Image::make($request->file('image'));
             $image->resize(300, 300);
-            $image->save('./public/questionImage/'.$random_string.'.jpg'); 
+            $image->save('questionImage/'.$random_string.'.jpg'); 
             $image_url = 'public/questionImage/'.$random_string.'.jpg';
         }
         QuizQuestion::where('id',$id)->update([
