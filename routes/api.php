@@ -18,6 +18,8 @@ use App\Http\Controllers\Api\QuizController;
 */
   
 Route::post('/login', [LoginController::class,'login']);
+Route::post('/getregister', [LoginController::class,'getregister']);
+Route::post('/register', [LoginController::class,'register']);
  
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/auth/user/profile',[ProfileController::class,'user_profile']);
