@@ -84,9 +84,11 @@
                                                                 <li data-toggle="tooltip" data-popup="tooltip-custom"
                                                                     data-original-title="{{$user->first_name}} {{$user->last_name}}"
                                                                     class="avatar avatar-sm pull-up">
-                                                                    <img class="media-object rounded-circle"
-                                                                        src="{{ asset('public') }}/profile_images/{{$user->avatar2}}"
-                                                                        alt="Avatar">
+                                                                   <img class="media-object rounded-circle"
+                                                                        src="{{ asset('profile_images/' . ($user->avatar2 ? $user->avatar2 : 'default.jpg')) }}"
+                                                                        alt="Avatar"
+                                                                        onerror="this.onerror=null;this.src='{{ asset('profile_images/2023-12-07-41M7Xl.jpg') }}';">
+                                                                    
                                                                 </li>
                                                                 @endif
                                                             @endforeach

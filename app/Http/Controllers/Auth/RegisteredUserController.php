@@ -54,6 +54,7 @@ class RegisteredUserController extends Controller
             'country' => $request['country'],
             'dob' => $request['dob'],
             'grade_id' => $request['grade'],
+            'grade_id' => $request['grade'],
             'timezone' => $request['timezone'],
         ]); 
 
