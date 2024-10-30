@@ -100,7 +100,9 @@
                                         @if($quiz->image_link)
                                             <img src="{{asset($quiz->image_link)}}" height="220px" width="250px">
                                         @elseif($quiz->video_link) 
-                                            <iframe src="{{$quiz->video_link}}" height="220px" width="250px"></iframe>
+                                        <video src="{{ asset($quiz->video_link) }}" style="height:220px;width:250px;" controls>
+                                            Your browser does not support the video tag.
+                                        </video>
                                         @endif 
                                     </div>
                                     &nbsp

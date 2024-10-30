@@ -46,13 +46,18 @@ class QuizController extends Controller
     
     public function show_quiz_question(Request $request)
     {
-        if(!$request->quiz_id){  
-            return $this->sendError("CFU questions does not exist.",[],404);  
+        if (!$request->quiz_id) {
+            return $this->sendError("CFU questions do not exist.", [], 404);
         }
-        $quiz_id        = $request->quiz_id;
-        $passing_points = Quizizz::where('id',$quiz_id)->pluck('passing_marks')->first();
-        $quizizz_points = QuizQuestion::where('quiz_id',$quiz_id)->sum('points');
-        $quizizz        = QuizQuestion::where('quiz_id', $quiz_id)->get();
+        
+        $quiz_id = $request->quiz_id;
+        $passing_points = Quizizz::where('id', $quiz_id)->pluck('passing_marks')->first();
+        $quizizz_points = QuizQuestion::where('quiz_id', $quiz_id)->sum('points');
+        $quizizz = QuizQuestion::where('quiz_id', $quiz_id)->get();
+    
+        // Define your base URL here
+        $baseUrl = url('/').'/'; // Adjust according to your base URL structure
+    
         // Define an array of difficulty levels
         $difficultyLevels = [
             '1' => 'easy',
@@ -60,36 +65,43 @@ class QuizController extends Controller
             '3' => 'difficult',
             '4' => 'very difficult',
         ];
+    
         // Initialize an empty array for the response
         $response = [];
-
+    
         // Loop through all difficulty levels
         foreach ($difficultyLevels as $difficultyId => $difficultyName) {
             // Initialize an empty array for questions of this difficulty level
             $response['difficulty_levels'][$difficultyName] = [];
-        
+    
             // Get questions for this difficulty level
             $questions = $quizizz->where('difficulty_level', $difficultyId);
-            
+    
             // Add questions to the response array
             foreach ($questions as $question) {
+                // Append the base URL to image and video links if they are not empty
+                if (!empty($question->image_link)) {
+                    $question->image_link = $baseUrl . $question->image_link;
+                }
+                if (!empty($question->video_link)) {
+                    $question->video_link = $baseUrl . $question->video_link;
+                }
                 $response['difficulty_levels'][$difficultyName][] = $question;
             }
         }
-        
+    
         // Check if any questions are found
         if (empty($response['difficulty_levels'])) {
             return $this->sendError("CFU Question Not Found", [], 404);
         }
-        
+    
         return $this->sendResponse([
             'Quiz_points' => $quizizz_points,
             'passing_marks' => $passing_points,
             'quiz_questions' => $response
         ], 'CFU Questions Found');
-        
-        
     }
+    
 
     public function cfuQuestionAnswer(Request $request) {
         $user = Auth::user();
