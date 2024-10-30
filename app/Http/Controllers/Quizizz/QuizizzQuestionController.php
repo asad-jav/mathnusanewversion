@@ -19,12 +19,12 @@ class QuizizzQuestionController extends Controller
 
     public function store(Request $request)
     {
-        try { 
+        try {
             $this->validate($request, [
                 'quesiton' => 'required',
                 'question_type' => 'required',
                 'difficulty_level' => 'required',
-                'points' => 'required', 
+                'points' => 'required',
             ]);
 
             $answer = '';
@@ -43,16 +43,17 @@ class QuizizzQuestionController extends Controller
                 $random_string = time();
                 $image = Image::make($request->file('image'));
                 $image->resize(300, 300);
-                $image->save('questionImage/' . $random_string . '.jpg');
                 $image_url = 'questionImage/' . $random_string . '.jpg';
+                $image->save(public_path($image_url)); // Save image in the public folder
             }
 
             $video_url = '';
             if ($request->hasFile('video')) {
                 $video = $request->file('video');
                 $video_name = time() . '.' . $video->getClientOriginalExtension();
-                $video->storeAs('videos', $video_name, 'public'); // Store video in storage/app/public/videos
-                $video_url = 'storage/videos/' . $video_name; // Path to be saved in database
+                $video_path = 'videos/' . $video_name;
+                $video->move(public_path('videos'), $video_name); // Save video in the public/videos folder
+                $video_url = $video_path; // Path to be saved in database
             }
 
             QuizQuestion::create([
@@ -94,19 +95,21 @@ class QuizizzQuestionController extends Controller
 
 
 
+
     public function edit($id)
     {
         $question = QuizQuestion::find($id);
         return view('quizizz.quizizz_questions.edit', compact('question'));
     }
+
     public function update(Request $request, $id)
     {
-        try { 
+        try {
             $answer = '';
             $choices = '';
 
             $question = QuizQuestion::where('id', $id)->first();
-            
+
             // Determine the answer and choices based on question type
             if ($request->question_type == 1) {
                 $answer = $request->identification;
@@ -120,15 +123,16 @@ class QuizizzQuestionController extends Controller
             }
 
             // Handle image upload
+            $image_url = $question->image_link;
             if ($request->image) {
-                if (File::exists($question->image_link)) {
-                    File::delete($question->image_link);
+                if (File::exists(public_path($question->image_link))) {
+                    File::delete(public_path($question->image_link));
                 }
                 $random_string = time();
                 $image = Image::make($request->file('image'));
                 $image->resize(300, 300);
-                $image->save('questionImage/' . $random_string . '.jpg');
                 $image_url = 'questionImage/' . $random_string . '.jpg';
+                $image->save(public_path($image_url)); // Save image in the public folder
             }
 
             // Handle video upload
@@ -142,8 +146,9 @@ class QuizizzQuestionController extends Controller
                 // Save the new video
                 $video = $request->file('video');
                 $video_name = time() . '.' . $video->getClientOriginalExtension();
-                $video->storeAs('videos', $video_name, 'public'); // Store in storage/app/public/videos
-                $video_url = 'storage/videos/' . $video_name; // Path to be saved in the database
+                $video_path = 'videos/' . $video_name;
+                $video->move(public_path('videos'), $video_name); // Save video in the public/videos folder
+                $video_url = $video_path; // Path to be saved in the database
             }
 
             // Update the quiz question
@@ -166,6 +171,7 @@ class QuizizzQuestionController extends Controller
                 ->withInput($request->all());
         }
     }
+
 
     public function destroy($id)
     {
