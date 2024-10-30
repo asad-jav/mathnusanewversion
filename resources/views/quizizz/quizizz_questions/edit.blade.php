@@ -117,9 +117,11 @@
                             </div>
                             <div class="customvideo"  style="@if($question->video_link) display: block; @else display: none; @endif">
                                 <a href="javascript:void(0)" class="btn btn-primary"  data-toggle="modal" data-target="#videotool"><i class="ft-edit-3"></i></a>
-                                <a href="javascript:void(0)" class="btn btn-primary videoclear"><i class="ft-trash"></i></a>
-                                <iframe src="{{$question->video_link}}"  width="100%" height="243" class="youtub-url"  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen > </iframe>
-                                        
+                                 @if($question->video_link)
+                                <video src="{{ asset($question->video_link) }}"  class="youtub-url" width="100%" height="243"  controls>
+                                    Your browser does not support the video tag.
+                                </video>
+                                @endif  
                             </div>
                         </div>
                         <div class="col-md-9">
@@ -274,21 +276,12 @@
                                         <span aria-hidden="true">×</span>
                                     </button>
                                 </div>
-                                
-                                <input   type="hidden" class="form-control" name="video_links" id="video_links"  value="{{$question->video_link}}"> 
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <label>Paste embeded video link from YouTube and Google Drive</label>
-                                          <div class="input-group">
-                                            <span class="input-group-btn">
-                                                <span class="btn btn-default btn-file">
-                                                    Paste Link…  
-                                                </span>
-                                            </span>
-                                            <input   type="text" class="form-control" value="{{$question->video_link}}" name="video_link" id="video_link"> 
-                                            <a class="btn btn-danger videoclear" href="javascript:void(0)">Clear</a>
-                                        </div> 
-                                            <iframe src="{{$question->video_link}}"   width="470" height="340" class="youtub-url"  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen > </iframe>
+                                        <label>Upload Video</label>
+                                        <div class="input-group">
+                                            <input type="file" name="video"  class="form-control"  accept="video/mp4, video/ogg, video/webm" id="videoInp"> 
+                                        </div>  
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -336,6 +329,7 @@
         content_css: "{{url('backend/assets/codepen.min.css')}}"
     });
 </script> -->
+
 <script>
     $(document).ready(function() {
 
@@ -388,86 +382,8 @@
         });
     
     });
-   // $(".videoclear").click(function(){
- 
-    //         $('#video_link').val('');
-    //         $('#youtub-url').val('');
-    //         $('.youtub-url').attr('src', '');
-    //         $(".customvideo").hide(); 
-    //         $("#firstdiv").show();
-    //         $("#seconddiv").hide();
-    // });
- /*
-   $("#video_link").change(function() {
-           var youtubeurl = $("#video_link").val();
-            $('.youtub-url').attr('src', youtubeurl);
-              $("#youtub-url").val(youtubeurl);
-            $(".customvideo").show();
-            $(".customimage").hide();
-            $("#firstdiv").hide();
-            $("#seconddiv").show(); 
-   });
-   */
-</script>
-<script>
-    $(document).ready(function () {
-        // Function to update iframe with embedded link
-        function updateIframe(link) {
-            // Check if the link is from YouTube Shorts
-            if (link.includes("youtube.com/shorts")) {
-                var videoIdMatch = link.match(/youtube\.com\/shorts\/([^/?]+)/);
-                if (videoIdMatch && videoIdMatch[1]) {
-                    var videoId = videoIdMatch[1];
-                    $(".youtub-url").attr("src", "https://www.youtube.com/embed/" + videoId);
-                    $("#video_links").val("https://www.youtube.com/embed/" + videoId);
-                }
-            }
-            // Check if the link is from YouTube
-            else if (link.includes("youtube.com") || link.includes("youtu.be")) {
-                var videoIdMatch = link.match(/[?&]v=([^&/]+)/) || link.match(/youtu\.be\/([^&/]+)/);
-                if (videoIdMatch && videoIdMatch[1]) {
-                    var videoId = videoIdMatch[1];
-                    $(".youtub-url").attr("src", "https://www.youtube.com/embed/" + videoId);
-                    $("#video_links").val("https://www.youtube.com/embed/" + videoId);
-                }
-            }
-            // Check if the link is from Google Drive
-            else if (link.includes("drive.google.com")) {
-                var fileIdMatch = link.match(/\/d\/([^/]+)/);
-                if (fileIdMatch && fileIdMatch[1]) {
-                    var fileId = fileIdMatch[1];
-                    $(".youtub-url").attr("src", "https://drive.google.com/file/d/" + fileId + "/preview");
-                    
-                    $("#video_links").val( "https://drive.google.com/file/d/" + fileId + "/preview");
-                }
-            }
-        }
 
-        // Event listener for input field change
-          // Event listener for input field change
-          $("#video_link").on("input", function () {
-            var videoLink = $(this).val();
-            $(".youtub-url").attr("src", "");
-            updateIframe(videoLink); 
-            $(".customvideo").show();
-            $(".customimage").hide();
-            $("#firstdiv").hide();
-            $("#seconddiv").show(); 
-        });
-
-        // Event listener for Clear button
-        $(".videoclear").on("click", function () {
-           
-            $('#video_link').val('');
-            $('#youtub-url').val('');
-            $("#video_links").val("");
-            $('.youtub-url').attr('src', '');
-            $(".customvideo").hide(); 
-            $("#firstdiv").show();
-            $("#seconddiv").hide();
-        });
-    });
-</script>
+</script> 
 
 <script>
     $("#question_type").change(function () { 

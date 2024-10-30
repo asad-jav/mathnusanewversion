@@ -96,11 +96,14 @@
                                     </td>
                                     <td> {{$question->choices}} </td>
                                     <td> 
-                                        @if($question->image_link)   
-                                        <img src="{{asset($question->image_link)}}" height="80" width="130">
-                                        @elseif($question->video_link) 
-                                        <iframe src="{{$question->video_link}}" height="80" width="130"></iframe>
+                                        @if($question->image_link)
+                                            <img src="{{ asset($question->image_link) }}" height="80" width="130" alt="Question Image">
+                                        @elseif($question->video_link)
+                                            <video src="{{ asset($question->video_link) }}" height="80" width="130" controls>
+                                                Your browser does not support the video tag.
+                                            </video>
                                         @else
+                                            <p>No media available for this question.</p>
                                         @endif
                                     </td>
                                     <td> {{$question->answer}} </td>

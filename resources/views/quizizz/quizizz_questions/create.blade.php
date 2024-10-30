@@ -264,17 +264,10 @@
                                 <input   type="hidden" class="form-control" name="video_links" id="video_links"> 
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <label>Paste embeded video link from YouTube and Google Drive</label>
-                                          <div class="input-group">
-                                            <span class="input-group-btn">
-                                                <span class="btn btn-default btn-file">
-                                                    Paste Link…  
-                                                </span>
-                                            </span>
-                                            <input   type="text" class="form-control" name="video_link" id="video_link"> 
-                                            <a class="btn btn-danger videoclear" href="javascript:void(0)">Clear</a>
-                                        </div> 
-                                            <iframe src=""  width="470" height="340" class="youtub-url"  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen > </iframe>
+                                    <label>Upload Video</label>
+                                        <div class="input-group">
+                                            <input type="file" name="video"  class="form-control"  accept="video/mp4, video/ogg, video/webm" id="videoInp"> 
+                                        </div>     
                                     </div>
                                 </div>
                                 <div class="modal-footer">
